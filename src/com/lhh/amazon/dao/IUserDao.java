@@ -13,7 +13,7 @@ public interface IUserDao {
 	 * @param user
 	 * @throws DataAccessException
 	 */
-	public void insert(Connection conn, User user) throws DataAccessException;
+	public User insert(Connection conn, User user) throws DataAccessException;
 
 	/**
 	 * 
@@ -24,7 +24,8 @@ public interface IUserDao {
 	 * @param password
 	 * @throws DataAccessException
 	 */
-	public void query(Connection conn, String username, String password) throws DataAccessException;
+	public User select(Connection conn, String username, String password) throws DataAccessException;
 
-	public void query(Connection conn, String username) throws DataAccessException;
+	public User select(Connection conn, String username) throws DataAccessException;
+	
 }

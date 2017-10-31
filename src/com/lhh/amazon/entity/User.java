@@ -9,7 +9,7 @@ import java.util.Date;
  *
  */
 public class User {
-	private Long userID;// 用户ID
+	private Long userID = -1L;// 用户ID
 	private String username;// 用户名字
 	private String password;// 用户密码
 	private byte sex;// 性别
@@ -119,4 +119,11 @@ public class User {
 		this.status = status;
 	}
 
+	@Override
+	public String toString() {
+		return "User [userID=" + userID + ", username=" + username + ", password=" + password + ", sex=" + sex
+				+ ", birthday=" + birthday + ", identityCode=" + identityCode + ", email=" + email + ", mobile="
+				+ mobile + ", address=" + address + ", status=" + status + "]";
+	}
+	
 }

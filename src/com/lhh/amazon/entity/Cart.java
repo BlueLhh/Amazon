@@ -7,7 +7,7 @@ package com.lhh.amazon.entity;
  *
  */
 public class Cart {
-	private Long cartID;// 购物车ID
+	private Long cartID;// 购物车内每一条商品的ID
 	private Long productID;// 产品ID
 	private int quantity;// 数量
 	private Long userID;// 用户ID
