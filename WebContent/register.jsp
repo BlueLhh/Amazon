@@ -38,8 +38,10 @@
 					<li class="current"><em></em>填写注册信息</li>
 					<li class="last"><em></em>注册成功</li>
 				</ul>
-				<form id="regForm" method="post" action="register"
+				<form id="regForm" method="post" action="user/UserServlet"
 					onsubmit="return checkForm(this)">
+					<!-- 使用隐藏域，传递一个键值对到后台，判断是注册、登陆登操作 -->
+					<input type="hidden" value="reg" name="op">
 					<table>
 						<tr>
 							<td class="field">用户名：</td>

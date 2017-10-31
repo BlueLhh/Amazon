@@ -20,7 +20,7 @@ public class Register {
 		String email;// 邮箱
 		String mobile;// 手机
 		String address;// 住址
-		int status;// 状态
+		//int status;// 状态
 		// 强转时间格式
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		@SuppressWarnings("resource")
@@ -46,8 +46,8 @@ public class Register {
 		mobile = sc.next();
 		System.out.println("住址：");
 		address = sc.next();
-		System.out.println("状态：");
-		status = sc.nextInt();
+//		System.out.println("状态：");
+//		status = sc.nextInt();
 
 		IUserService userService = new UserServiceImpl();
 		User user = new User();
@@ -60,7 +60,7 @@ public class Register {
 		user.setEmail(email);
 		user.setMobile(mobile);
 		user.setAddress(address);
-		user.setStatus(status);
+		//user.setStatus(status);
 		try {
 			userService.register(user);
 			System.out.println("注册成功！");

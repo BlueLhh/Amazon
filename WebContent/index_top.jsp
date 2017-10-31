@@ -11,9 +11,9 @@
 			<c:set value="" var="user"></c:set>
 			<ul class="m_left">
 				<c:choose>
-					<c:when test="">
-						<li><a href="#" class="c_red"></a>&nbsp;&nbsp;&nbsp;</li>
-						<li><a href="quit">退出</a>&nbsp;&nbsp;&nbsp;</li>
+					<c:when test="${sessionScope.user.username!=null}">
+						<li><a href="#" class="c_red">${sessionScope.user.username}</a>&nbsp;&nbsp;&nbsp;</li>
+						<li><a href="user/UserServlet?op=logout">退出</a>&nbsp;&nbsp;&nbsp;</li>
 						<li><a href="register.jsp">请注册</a></li>
 					</c:when>
 
@@ -26,8 +26,8 @@
 
 			<ul class="m_right">
 				<c:choose>
-					<c:when test="">
-						<li><img src="images/icon_3.png"><a href="shopping"
+					<c:when test="${sessionScope.user.username!=null}">
+						<li><img src="images/icon_3.png"><a href="shopping.jsp"
 							class="c_red">购物车</a></li>
 					</c:when>
 					<c:otherwise>

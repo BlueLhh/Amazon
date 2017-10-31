@@ -32,8 +32,10 @@
 			<em class="corner lb"></em> <em class="corner rt"></em>
 			<div class="box">
 				<h1>欢迎回到亚马逊</h1>
-				<form id="loginForm" method="post" action="login"
+				<form id="loginForm" method="post" action="user/UserServlet"
 					onsubmit="return loginCheck()">
+					<!-- 使用隐藏域，传递一个键值对到后台，判断是注册、登陆登操作 -->
+					<input type="hidden" value="login" name="op">
 					<table>
 						<tr>
 							<td class="field">用户名：</td>

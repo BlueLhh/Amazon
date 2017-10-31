@@ -15,11 +15,11 @@ function FocusItem(obj) {
 
 function Checkexist() {
 	var userName = document.getElementById("userName");
-	var flag=true
+	var flag = true
 	$.ajax({
 		url : "CheckUserName",// 请求的servlet地址
 		type : "POST",// 请求方式
-		async: false,
+		async : false,
 		data : "userName=" + userName.value,// 发送到服务器的数据
 		dataType : "text",// 设置返回数据类型
 		success : function(test) {
@@ -27,7 +27,7 @@ function Checkexist() {
 				var msgBox = document.getElementById("uName");
 				msgBox.style.display = "inline";
 				msgBox.innerHTML = "用户名已存在！";
-				flag= false;
+				flag = false;
 			} else {
 				var msgBox = document.getElementById("uName");
 				msgBox.style.display = "inline";
@@ -58,9 +58,32 @@ function CheckItem(obj) {
 			msgBox.innerHTML = "用户名不能为空并且只能是字母开头和字母数字结尾，长度在4-15之间";
 			msgBox.className = "error";
 			return false;
-		}else{
+		} else {
 			return Checkexist();
 		}
+
+		// // 用户名存在
+		// if (obj.value != "" || regName.test(obj.value) == true) {
+		// var param = "username=" + obj.value;
+		// var url = "${pageContext.request.contextPath}/CheckNameServlet";
+		// $.post(url, param, function(data, textStatus) {
+		// // 成功
+		// if (textStatus == "success") {
+		// var $error = $("#error");
+		// if (data == "true") {
+		// // 存在，不能注册
+		// $error.html("该用户已存在");
+		// } else {
+		// // 不存在，可以注册
+		// $error.html("可以注册");
+		// }
+		// }
+		// }, "text");
+		// return false;
+		// } else {
+		// return Checkexist();
+		// }
+
 		break;
 	case "passWord":
 		if (obj.value == "" || regPass.test(obj.value) == false) {
@@ -85,7 +108,7 @@ function CheckItem(obj) {
 			msgBox.innerHTML = "验证码不能为空";
 			msgBox.className = "error";
 			return false;
-		}else{
+		} else {
 			return checkValidateCode();
 		}
 		break;
@@ -108,7 +131,7 @@ function CheckItem(obj) {
 			msgBox.innerHTML = "电子邮件不能为空,格式为web@sohu.com";
 			msgBox.className = "error";
 			return false;
-		}else{
+		} else {
 			return emailExist();
 		}
 		break;
@@ -134,74 +157,58 @@ function checkForm(frm) {
 	var els = frm.getElementsByTagName("input");
 
 	for (var i = 0; i < els.length; i++) {
-		
-			if (!CheckItem(els[i]))
-				return false;
+
+		if (!CheckItem(els[i]))
+			return false;
 	}
 	return true;
 }
 
-/*function showChater() {
-	var _chater = document.createElement("div");
-	_chater.setAttribute("id", "chater");
-	var _dl = document.createElement("dl");
-	var _dt = document.createElement("dt");
-	var _dd = document.createElement("dd");
-	var _a = document.createElement("a");
-	_a.setAttribute("href", "#");
-	_a.onclick = openRoom;
-	_a.appendChild(document.createTextNode("在线聊天"));
-	_dd.appendChild(_a);
-	_dl.appendChild(_dt);
-	_dl.appendChild(_dd);
-	_chater.appendChild(_dl);
-	document.body.appendChild(_chater);
-}
+/*
+ * function showChater() { var _chater = document.createElement("div");
+ * _chater.setAttribute("id", "chater"); var _dl = document.createElement("dl");
+ * var _dt = document.createElement("dt"); var _dd =
+ * document.createElement("dd"); var _a = document.createElement("a");
+ * _a.setAttribute("href", "#"); _a.onclick = openRoom;
+ * _a.appendChild(document.createTextNode("在线聊天")); _dd.appendChild(_a);
+ * _dl.appendChild(_dt); _dl.appendChild(_dd); _chater.appendChild(_dl);
+ * document.body.appendChild(_chater); }
+ * 
+ * function openRoom() { window.open("chat-room.jsp", "chater",
+ * "status=0,scrollbars=0,menubar=0,location=0,width=600,height=400"); }
+ */
 
-function openRoom() {
-	window.open("chat-room.jsp", "chater",
-			"status=0,scrollbars=0,menubar=0,location=0,width=600,height=400");
-}*/
-
-/*function scrollChater() {
-	var chater = document.getElementById("chater");
-	var scrollTop = document.documentElement.scrollTop;
-	var scrollLeft = document.documentElement.scrollLeft;
-	chater.style.left = scrollLeft + document.documentElement.clientWidth - 92
-			+ "px";
-	chater.style.top = scrollTop + document.documentElement.clientHeight - 25
-			+ "px";
-}
-
-function inArray(array, str) {
-	for (a in array) {
-		if (array[a] == str)
-			return true;
-	}
-	return false;
-}*/
-
+/*
+ * function scrollChater() { var chater = document.getElementById("chater"); var
+ * scrollTop = document.documentElement.scrollTop; var scrollLeft =
+ * document.documentElement.scrollLeft; chater.style.left = scrollLeft +
+ * document.documentElement.clientWidth - 92 + "px"; chater.style.top =
+ * scrollTop + document.documentElement.clientHeight - 25 + "px"; }
+ * 
+ * function inArray(array, str) { for (a in array) { if (array[a] == str) return
+ * true; } return false; }
+ */
 
 function emailExist() {
-	var flag=true
-	var email=$("[name=email]").val()
+	var flag = true
+	var email = $("[name=email]").val()
 	$.ajax({
 		url : "CheckEmail",// 请求的servlet地址
 		type : "GET",// 请求方式
 		data : "" + email,// 发送到服务器的数据
-		async: false,
+		async : false,
 		dataType : "text",// 设置返回数据类型
 		success : function(test) {
 			if (test == 1) {
 				var msgBox = document.getElementById("uemail");
 				msgBox.style.display = "inline";
 				msgBox.innerHTML = "该邮箱已经注册！";
-				flag= false;
+				flag = false;
 			} else {
 				var msgBox = document.getElementById("uemail");
 				msgBox.style.display = "inline";
 				msgBox.innerHTML = null;
-				
+
 			}
 		},// 响应成功后执行的回调方法data响应文本
 		complete : function(XMLHttpRequest, statusText) {
@@ -214,15 +221,14 @@ function emailExist() {
 	return flag;
 }
 
-
-
+// 判断验证码
 function checkValidateCode() {
-	var veryCode=$("[name=veryCode]").val()
-	var flag=true;
+	var veryCode = $("[name=veryCode]").val()
+	var flag = true;
 	$.ajax({
 		url : "checkCode",// 请求的servlet地址
 		type : "GET",// 请求方式
-		async: false,
+		async : false,
 		data : "" + veryCode,// 发送到服务器的数据
 		dataType : "text",// 设置返回数据类型
 		success : function(test) {
@@ -230,7 +236,7 @@ function checkValidateCode() {
 				var msgBox = document.getElementById("Code");
 				msgBox.style.display = "inline";
 				msgBox.innerHTML = "验证码错误！";
-				flag= false;
+				flag = false;
 			} else {
 				var msgBox = document.getElementById("Code");
 				msgBox.style.display = "inline";
@@ -241,28 +247,23 @@ function checkValidateCode() {
 	return flag
 }
 
+function loginCheck() {
 
-function loginCheck(){
-	
-	if($("[name=userName]").val()==""){
+	if ($("[name=userName]").val() == "") {
 		alert("请输入用户名！")
 		return false;
 	}
-	
-	if($("[name=passWord]").val()==""){
+
+	if ($("[name=passWord]").val() == "") {
 		alert("请输入用户密码！")
 		return false;
 	}
-	
-	if($("[name=veryCode]").val()==""){
+
+	if ($("[name=veryCode]").val() == "") {
 		alert("请输入验证码！")
 		return false;
-	}else{
+	} else {
 		return checkValidateCode();
 	}
-	
-	
+
 }
-
-
-
