@@ -1,5 +1,5 @@
 package com.lhh.amazon.dao.impl;
 
-public class IProductDaoImpl {
+public class ProductDaoImpl {
 
 }

@@ -43,6 +43,7 @@
 					<!-- 使用隐藏域，传递一个键值对到后台，判断是注册、登陆登操作 -->
 					<input type="hidden" value="reg" name="op">
 					<table>
+						<!-- <div id="error">错误信息</div> -->
 						<tr>
 							<td class="field">用户名：</td>
 							<td><input id="userName" class="text" type="text"

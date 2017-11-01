@@ -75,17 +75,11 @@ public class UserServlet extends HttpServlet {
 			user.setPassword(password);
 			try {
 				user = userService.login(username, password);
-				System.out.println("数据库中提取出来的用户名：" + user.getUsername());
-				System.out.println("数据库中提取出来的密码：" + user.getPassword());
 				if (user != null && user.getUserID() != -1) {
 					HttpSession session = request.getSession();
 					session.setAttribute("user", user);
 					response.sendRedirect("../index.jsp");
-					System.out.println("登录成功！");
 				} else {
-					System.out.println("用户名或者密码错误！");
-					System.out.println("用户名：" + username);
-					System.out.println("密码：" + password);
 					//登录不成功，继续返回登录的界面
 					response.sendRedirect("../login.jsp");
 				}

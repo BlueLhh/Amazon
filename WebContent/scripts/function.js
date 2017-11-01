@@ -13,11 +13,12 @@ function FocusItem(obj) {
 	msgBox.className = "";
 }
 
+//验证注册用户名字
 function Checkexist() {
 	var userName = document.getElementById("userName");
 	var flag = true
 	$.ajax({
-		url : "CheckUserName",// 请求的servlet地址
+		url : "CheckNameServlet",// 请求的servlet地址
 		type : "POST",// 请求方式
 		async : false,
 		data : "userName=" + userName.value,// 发送到服务器的数据
@@ -58,32 +59,31 @@ function CheckItem(obj) {
 			msgBox.innerHTML = "用户名不能为空并且只能是字母开头和字母数字结尾，长度在4-15之间";
 			msgBox.className = "error";
 			return false;
-		} else {
+		} /*else if (obj.value != "" || regName.test(obj.value) == true) {
+			var param = "userName=" + obj.value;
+			var url = "CheckNameServlet";
+			
+			$.post(url, param, function(data, textStatus) {
+				// 成功
+				if (textStatus == "success") {
+					var $error = $("#error");
+					if (data == "true") {
+						// 存在，不能注册
+						// $error.html("该用户已存在");
+						msgBox.innerHTML = "该用户已存在，不能进行注册啦~~~";
+						msgBox.className = "error";
+					} else {
+						// 不存在，可以注册
+						// $error.html("可以注册");
+						// msgBox.innerHTML = "可以注册~~";
+						// msgBox.className = "error";
+					}
+				}
+			}, "text");
+			return false;
+		}*/ else {
 			return Checkexist();
 		}
-
-		// // 用户名存在
-		// if (obj.value != "" || regName.test(obj.value) == true) {
-		// var param = "username=" + obj.value;
-		// var url = "${pageContext.request.contextPath}/CheckNameServlet";
-		// $.post(url, param, function(data, textStatus) {
-		// // 成功
-		// if (textStatus == "success") {
-		// var $error = $("#error");
-		// if (data == "true") {
-		// // 存在，不能注册
-		// $error.html("该用户已存在");
-		// } else {
-		// // 不存在，可以注册
-		// $error.html("可以注册");
-		// }
-		// }
-		// }, "text");
-		// return false;
-		// } else {
-		// return Checkexist();
-		// }
-
 		break;
 	case "passWord":
 		if (obj.value == "" || regPass.test(obj.value) == false) {
@@ -223,16 +223,16 @@ function emailExist() {
 
 // 判断验证码
 function checkValidateCode() {
-	var veryCode = $("[name=veryCode]").val()
+	var veryCode = $("[name=veryCode]").val();
 	var flag = true;
 	$.ajax({
 		url : "checkCode",// 请求的servlet地址
 		type : "GET",// 请求方式
 		async : false,
-		data : "" + veryCode,// 发送到服务器的数据
+		data : "veryCode=" + veryCode,// 发送到服务器的数据
 		dataType : "text",// 设置返回数据类型
 		success : function(test) {
-			if (test != 1) {
+			if (test != 1 ) {
 				var msgBox = document.getElementById("Code");
 				msgBox.style.display = "inline";
 				msgBox.innerHTML = "验证码错误！";

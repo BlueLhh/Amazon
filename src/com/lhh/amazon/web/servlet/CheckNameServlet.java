@@ -26,21 +26,19 @@ public class CheckNameServlet extends HttpServlet {
 		// 是否存在
 		boolean isExisted = false;
 		try {
-			isExisted = userService.checkName(username);
-			if(isExisted){
-				System.out.println("用户存在");
-			}else{
-				System.out.println("用户不存在");
-			}
+			isExisted = userService.checkName(username); 
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
-		response.getWriter().write(isExisted + "");
+		if (isExisted) {
+			response.getWriter().write(1 + "");
+		} else {
+			response.getWriter().write(isExisted + "");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }

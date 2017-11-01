@@ -90,4 +90,10 @@ public class Comment {
 		this.state = state;
 	}
 
+	@Override
+	public String toString() {
+		return "Comment [commentID=" + commentID + ", reply=" + reply + ", content=" + content + ", createTime="
+				+ createTime + ", replyTime=" + replyTime + ", nickname=" + nickname + ", state=" + state + "]";
+	}
+
 }
