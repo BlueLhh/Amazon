@@ -17,12 +17,13 @@ import com.lhh.amazon.service.impl.CommentServiceImpl;
 public class ShowComment {
 	public static void main(String[] args) {
 		ICommentService commentService = new CommentServiceImpl();
-		Comment comment = new Comment();
+		//Comment comment = new Comment();
 		List<Comment> list = null;
 		try {
-			list = commentService.allComment(comment);
+			//list = commentService.allComment(comment);
+			list = commentService.allComment();
 			for (Comment comm : list) {
-				System.out.println(comm);
+				System.out.println(comm.getNickname());
 			}
 			
 		} catch (ServiceException e) {

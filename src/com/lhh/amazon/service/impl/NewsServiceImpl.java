@@ -54,4 +54,36 @@ public class NewsServiceImpl implements INewsService {
 
 		return list;
 	}
+
+	@Override
+	public List<News> showNews() throws ServiceException {
+		Connection conn = null;
+		List<News> list = null;
+		conn = ConnectionFactory.getConnection();
+
+		try {
+			list = dao.select(conn);
+		} catch (DataAccessException e) {
+			throw new ServiceException("显示失败！");
+		} finally {
+			DBUtils.close(null, null, conn);
+		}
+
+		return list;
+	}
+
+	@Override
+	public News findNews(Long id) throws ServiceException {
+		Connection conn;
+		News news = new News();
+		conn = ConnectionFactory.getConnection();
+		try {
+			news = dao.select(id, conn);
+		} catch (DataAccessException e) {
+			throw new ServiceException("查找失败！");
+		} finally {
+			DBUtils.close(null, null, conn);
+		}
+		return news;
+	}
 }

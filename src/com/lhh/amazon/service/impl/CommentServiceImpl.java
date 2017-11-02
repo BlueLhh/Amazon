@@ -53,4 +53,19 @@ public class CommentServiceImpl implements ICommentService {
 		return list;
 	}
 
+	@Override
+	public List<Comment> allComment() throws ServiceException {
+		Connection conn = null;
+		List<Comment> list = null;
+		conn = ConnectionFactory.getConnection();
+
+		try {
+			list = dao.select(conn);
+		} catch (DataAccessException e) {
+			throw new ServiceException("显示失败！");
+		} finally {
+			DBUtils.close(null, null, conn);
+		}
+		return list;
+	}
 }

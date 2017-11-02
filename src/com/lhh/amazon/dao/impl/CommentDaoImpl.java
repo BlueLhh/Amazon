@@ -42,7 +42,11 @@ public class CommentDaoImpl implements ICommentDao {
 				pstmt.setString(2, comment.getReply());
 				pstmt.setString(3, comment.getContent());
 				pstmt.setDate(4, new java.sql.Date(comment.getCreateTime().getTime()));
-				pstmt.setDate(5, new java.sql.Date(comment.getReplyTime().getTime()));
+				if (comment.getReplyTime() == null) {
+					pstmt.setDate(5, null);
+				} else {
+					pstmt.setDate(5, new java.sql.Date(comment.getReplyTime().getTime()));
+				}
 				pstmt.setString(6, comment.getNickname());
 				pstmt.setString(7, comment.getState());
 			}
@@ -76,4 +80,10 @@ public class CommentDaoImpl implements ICommentDao {
 		});
 		return list;
 	}
+
+	// @Override
+	// public List<Comment> select() throws DataAccessException {
+	//
+	// return null;
+	// }
 }

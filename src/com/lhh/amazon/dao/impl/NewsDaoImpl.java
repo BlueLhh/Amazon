@@ -70,4 +70,55 @@ public class NewsDaoImpl implements INewsDao {
 		return list;
 	}
 
+	@Override
+	public News select(Long id, Connection conn) throws DataAccessException {
+		JdbcTemplate jt = new JdbcTemplate(conn);
+		News news = new News();
+		// 查询SQL语句
+		String sql = "select * from hwua_news where hn_id = ?";
+		jt.query(sql, new PreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement pstmt) throws SQLException {
+				pstmt.setLong(1, id);
+			}
+		}, new RowCallBackHandler() {
+
+			@Override
+			public void processRow(ResultSet rs) throws SQLException {
+				if (rs.next()) {
+					news.setNewsID(rs.getLong(1));
+					news.setTitle(rs.getString(2));
+					news.setContent(rs.getString(3));
+					news.setCreateTime(rs.getDate(4));
+				}
+			}
+		});
+		return news;
+	}
+
+	// @Override
+	// public List<News> select() throws DataAccessException {
+	// Connection conn = null;
+	// JdbcTemplate jt = new JdbcTemplate(conn);
+	// List<News> list = new ArrayList<News>();
+	// // 查询SQL语句
+	// String sql = "select * from hwua_news";
+	// jt.query(sql, new RowCallBackHandler() {
+	//
+	// @Override
+	// public void processRow(ResultSet rs) throws SQLException {
+	// while (rs.next()) {
+	// News news = new News();
+	// news.setNewsID(rs.getLong(1));
+	// news.setTitle(rs.getString(2));
+	// news.setContent(rs.getString(3));
+	// news.setCreateTime(rs.getDate(4));
+	// list.add(news);
+	// }
+	// }
+	// });
+	// return list;
+	// }
+
 }

@@ -8,9 +8,9 @@
 <div class="newsList">
 	<h2>新闻动态</h2>
 	<ul>
-		<c:forEach items="" var="n" end="10">
-			<li><a href="readNews">&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;</a></li>
+		<c:forEach items="${requestScope.index_news}" var="n" end="10">
+			<li><a href="readNews?id=${n.newsID}">&nbsp;&nbsp;&nbsp;
+					${n.title}&nbsp;&nbsp;&nbsp;</a></li>
 		</c:forEach>
 	</ul>
 </div>

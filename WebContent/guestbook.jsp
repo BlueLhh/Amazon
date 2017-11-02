@@ -27,15 +27,14 @@
 		<div class="guestbook">
 			<h2>全部留言</h2>
 			<ul>
-				<c:forEach items="" var="" >
-				
+				<c:forEach items="${requestScope.comment}" var="c" >
 				<li>
 					<dl>
-						<dt>内容：</dt>
-						<dd class="author"><span>作者</span></dd>
-						<dd>评论时间：</dd>
-						<dd>回复：</dd>
-						<dd>回复时间：</dd>
+						<dt>内容：${c.content}</dt>
+						<dd class="author"><span>作者：${c.nickname}</span></dd>
+						<dd>评论时间：${c.createTime}</dd>
+						<dd>回复：${c.reply}</dd>
+						<dd>回复时间：${c.replyTime}</dd>
 					</dl>
 				</li>
 				</c:forEach>

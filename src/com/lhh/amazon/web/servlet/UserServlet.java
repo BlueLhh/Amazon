@@ -61,8 +61,7 @@ public class UserServlet extends HttpServlet {
 				user = userService.register(user);
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
-				System.out.println("注册成功！");
-				response.sendRedirect("../index.jsp");
+				response.sendRedirect("../reg-result.jsp");
 			} catch (ServiceException e) {
 				e.printStackTrace();
 			}

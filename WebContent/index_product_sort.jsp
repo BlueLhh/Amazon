@@ -7,14 +7,14 @@
 
 	<c:set var="categoryInfo" value=""></c:set>
 
-	<c:forEach items="" var="c">
+	<c:forEach items="${requestScope.Category}" var="c">
 		<dl>
 			<dt>
-				<a href="category"></a>
+				<a href="category">${c.categoryName}</a>
 			</dt>
-			<c:forEach items="" var="">
+			<c:forEach items="${c.list}" var="child">
 				<dd>
-					<a href="category"></a>
+					<a href="category">${child.categoryName}</a>
 				</dd>
 			</c:forEach>
 		</dl>

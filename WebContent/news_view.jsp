@@ -37,11 +37,11 @@
 			<%@ include file="index_news.jsp"%>
 		</div>
 		<div id="news" class="right-main">
-			<c:set var="news" value=""></c:set>
-			<h1>标题：</h1>
+			<c:set var="news" value="${requestScope.news}"></c:set>
+			<h1>标题：${news.title}</h1>
 			<div class="content">
-				<p style="text-align: right;">创建时间：</p>
-				内容：
+				<p style="text-align: right;">创建时间：${news.createTime}</p>
+				内容：${news.content}
 			</div>
 		</div>
 		<div class="clear"></div>

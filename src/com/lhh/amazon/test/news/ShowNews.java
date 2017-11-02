@@ -17,13 +17,19 @@ import com.lhh.amazon.service.impl.NewsServiceImpl;
 public class ShowNews {
 	public static void main(String[] args) {
 		INewsService newsService = new NewsServiceImpl();
-		News news = new News();
+		// News news = new News();
 		List<News> list = null;
 		try {
-			list = newsService.showNews(news);
-			for (News news2 : list) {
-				System.out.println(news2);
+			// list = newsService.showNews(news);
+			list = newsService.showNews();
+			if(list.size() > -1){
+				for (News news2 : list) {
+					System.out.println(news2);
+				}
+			}else{
+				System.out.println("没有找到相关的信息");
 			}
+			
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}

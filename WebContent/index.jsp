@@ -25,7 +25,7 @@
 	<div id="middle">
 		<div class="p_left">
 			<!--商品分类-->
-			<%-- <%@ include file="index_product_sort.jsp"%> --%>
+			<%@ include file="index_product_sort.jsp"%>
 			<!--商品分类结束-->
 
 			<div class="pre_look">

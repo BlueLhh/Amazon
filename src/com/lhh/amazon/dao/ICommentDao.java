@@ -26,5 +26,5 @@ public interface ICommentDao {
 	 */
 	public List<Comment> select(Connection conn) throws DataAccessException;
 
-	// List<Comment> select(Connection conn) throws DataAccessException;
+	//public List<Comment> select() throws DataAccessException;
 }

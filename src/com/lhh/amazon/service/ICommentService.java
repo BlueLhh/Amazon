@@ -11,6 +11,7 @@ public interface ICommentService {
 
 	// 显示全部的留言信息
 	public List<Comment> allComment(Comment comment) throws ServiceException;
+	public List<Comment> allComment() throws ServiceException;
 
 	// List<Comment> allComment(Comment comment) throws ServiceException;
 }
