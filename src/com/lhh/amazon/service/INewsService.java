@@ -10,5 +10,6 @@ public interface INewsService {
 	public News createNews(News news) throws ServiceException;
 
 	// 显示全部的新闻
-	public List<News> showNews() throws ServiceException;
+	public List<News> showNews(News news) throws ServiceException;
+
 }

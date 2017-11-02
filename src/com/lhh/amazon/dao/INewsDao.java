@@ -11,5 +11,6 @@ public interface INewsDao {
 	public News insert(Connection conn, News news) throws DataAccessException;
 
 	// 显示新闻
-	public List<News> select() throws DataAccessException;
+	public List<News> select(Connection conn) throws DataAccessException;
+
 }

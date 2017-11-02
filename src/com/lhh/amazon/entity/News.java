@@ -59,4 +59,10 @@ public class News {
 		this.createTime = createTime;
 	}
 
+	@Override
+	public String toString() {
+		return "News [newsID=" + newsID + ", title=" + title + ", content=" + content + ", createTime=" + createTime
+				+ "]";
+	}
+
 }
