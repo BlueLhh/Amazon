@@ -16,7 +16,7 @@ public class FindNews {
 		INewsService newsService = new NewsServiceImpl();
 		News news = new News();
 		try {
-			news = newsService.findNews(3L);
+			news = newsService.findNews(2L);
 			System.out.println(news);
 		} catch (ServiceException e) {
 			e.printStackTrace();

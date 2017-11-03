@@ -13,15 +13,15 @@ import java.util.List;
 public class ProductCategory {
 	private Long categoryID; // 分类ID
 	private String categoryName;// 分类名
-	private Long parentCategoryID;// 父级分类
-	
+	private Long childID;// 父级分类
+
 	private List<ProductCategory> list = new ArrayList<ProductCategory>();
 
-	public ProductCategory(Long categoryID, String categoryName, Long parentCategoryID, List<ProductCategory> list) {
+	public ProductCategory(Long categoryID, String categoryName, Long childID, List<ProductCategory> list) {
 		super();
 		this.categoryID = categoryID;
 		this.categoryName = categoryName;
-		this.parentCategoryID = parentCategoryID;
+		this.childID = childID;
 		this.list = list;
 	}
 
@@ -45,12 +45,12 @@ public class ProductCategory {
 		this.categoryName = categoryName;
 	}
 
-	public Long getParentCategoryID() {
-		return parentCategoryID;
+	public Long getChildID() {
+		return childID;
 	}
 
-	public void setParentCategoryID(Long parentCategoryID) {
-		this.parentCategoryID = parentCategoryID;
+	public void setChildID(Long childID) {
+		this.childID = childID;
 	}
 
 	public List<ProductCategory> getList() {
@@ -63,8 +63,8 @@ public class ProductCategory {
 
 	@Override
 	public String toString() {
-		return "ProductCategory [categoryID=" + categoryID + ", categoryName=" + categoryName + ", parentCategoryID="
-				+ parentCategoryID + ", list=" + list + "]";
+		return "ProductCategory [categoryID=" + categoryID + ", categoryName=" + categoryName + ", childID=" + childID
+				+ ", list=" + list + "]";
 	}
 
 }

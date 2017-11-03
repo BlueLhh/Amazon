@@ -23,7 +23,7 @@ public class NewsServiceImpl implements INewsService {
 	// 创建一条新闻
 	@Override
 	public News createNews(News news) throws ServiceException {
-		Connection conn = null;
+		Connection conn;
 		conn = ConnectionFactory.getConnection();
 		try {
 			news = dao.insert(conn, news);
@@ -51,7 +51,6 @@ public class NewsServiceImpl implements INewsService {
 		} finally {
 			DBUtils.close(null, null, conn);
 		}
-
 		return list;
 	}
 
@@ -74,7 +73,7 @@ public class NewsServiceImpl implements INewsService {
 
 	@Override
 	public News findNews(Long id) throws ServiceException {
-		Connection conn;
+		Connection conn = null;
 		News news = new News();
 		conn = ConnectionFactory.getConnection();
 		try {

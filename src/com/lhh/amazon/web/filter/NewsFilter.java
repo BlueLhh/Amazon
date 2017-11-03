@@ -18,7 +18,7 @@ import com.lhh.amazon.entity.News;
 import com.lhh.amazon.service.INewsService;
 import com.lhh.amazon.service.impl.NewsServiceImpl;
 
-//@WebFilter("/index.jsp")
+//@WebFilter("/news_view.jsp")
 @WebFilter(filterName="NewsFilter",urlPatterns={"/index.jsp","/readNews"})
 public class NewsFilter implements Filter {
 

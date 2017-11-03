@@ -38,7 +38,8 @@ public class ProductDaoImpl implements IProductDao {
 					product.setPrice(rs.getDouble(4));
 					product.setStock(rs.getInt(5));
 					product.getCategoryID().setCategoryID(rs.getLong(6));
-					product.setFileName(rs.getString(7));
+					product.getChildID().setChildID(rs.getLong(7));
+					product.setFileName(rs.getString(8));
 					list.add(product);
 				}
 			}
@@ -73,7 +74,8 @@ public class ProductDaoImpl implements IProductDao {
 					product.setPrice(rs.getDouble(4));
 					product.setStock(rs.getInt(5));
 					product.getCategoryID().setCategoryID(rs.getLong(6));
-					product.setFileName(rs.getString(7));
+					product.getChildID().setChildID(rs.getLong(7));
+					product.setFileName(rs.getString(8));
 				}
 			}
 		});

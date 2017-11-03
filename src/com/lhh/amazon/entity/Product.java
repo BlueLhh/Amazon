@@ -13,11 +13,12 @@ public class Product {
 	private String description;// 产品说明
 	private double price;// 产品价格
 	private int stock;// 产品库存
-	private ProductCategory categoryID;// 产品分类ID
+	private ProductCategory categoryID = new ProductCategory();// 产品分类ID
+	private ProductCategory childID = new ProductCategory();// 子项ID
 	private String fileName;// 文件名字
 
 	public Product(Long productID, String productName, String description, double price, int stock,
-			ProductCategory categoryID, String fileName) {
+			ProductCategory categoryID, ProductCategory childID, String fileName) {
 		super();
 		this.productID = productID;
 		this.productName = productName;
@@ -25,6 +26,7 @@ public class Product {
 		this.price = price;
 		this.stock = stock;
 		this.categoryID = categoryID;
+		this.childID = childID;
 		this.fileName = fileName;
 	}
 
@@ -80,12 +82,27 @@ public class Product {
 		this.categoryID = categoryID;
 	}
 
+	public ProductCategory getChildID() {
+		return childID;
+	}
+
+	public void setChildID(ProductCategory childID) {
+		this.childID = childID;
+	}
+
 	public String getFileName() {
 		return fileName;
 	}
 
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [productID=" + productID + ", productName=" + productName + ", description=" + description
+				+ ", price=" + price + ", stock=" + stock + ", categoryID=" + categoryID + ", childID=" + childID
+				+ ", fileName=" + fileName + "]";
 	}
 
 }

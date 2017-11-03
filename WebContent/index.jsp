@@ -66,16 +66,16 @@
 					<h4>找不到您搜索的商品！</h4>
 				</c:if>
 				<c:set value="" var="products"></c:set>
-				<c:forEach items="" var="p">
+				<c:forEach items="${requestScope.product}" var="p">
 					<li>
 						<dl>
 							<dt>
-								<a href="pview" target="_self"><img src="" /></a>
+								<a href="pview?id=${p.productID}" target="_self"><img src="${p.fileName}" /></a>
 							</dt>
 							<dd class="title">
-								<a href="pview" target="_self"></a>
+								<a href="pview?id=${p.productID}" target="_self">${p.productName}</a>
 							</dd>
-							<dd class="price">￥</dd>
+							<dd class="price">￥${p.price}</dd>
 						</dl>
 					</li>
 

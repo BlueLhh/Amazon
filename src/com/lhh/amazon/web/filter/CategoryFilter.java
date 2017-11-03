@@ -17,7 +17,8 @@ import com.lhh.amazon.service.IProductCategoryService;
 import com.lhh.amazon.service.impl.ProductCategoryServiceImpl;
 
 //@WebFilter("/index_product_sort.jsp")
-@WebFilter(filterName = "NewsFilter", urlPatterns = { "/index.jsp", "/guestbook.jsp", "/product_view.jsp" })
+@WebFilter(filterName = "CategoryFilter", urlPatterns = { "/index.jsp", "/guestbook.jsp", "/index_product_sort.jsp",
+		"/pview" })
 public class CategoryFilter implements Filter {
 
 	public CategoryFilter() {
@@ -29,7 +30,6 @@ public class CategoryFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-
 		// 查询
 		IProductCategoryService ipcs = new ProductCategoryServiceImpl();
 		List<ProductCategory> list = null;

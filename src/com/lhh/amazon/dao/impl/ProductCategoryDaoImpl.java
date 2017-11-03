@@ -32,7 +32,7 @@ public class ProductCategoryDaoImpl implements IProductCategoryDao {
 					ProductCategory category = new ProductCategory();
 					category.setCategoryID(rs.getLong(1));
 					category.setCategoryName(rs.getString(2));
-					category.setParentCategoryID(rs.getLong(3));
+					category.setChildID(rs.getLong(3));
 					list.add(category);
 				}
 			}
@@ -55,7 +55,7 @@ public class ProductCategoryDaoImpl implements IProductCategoryDao {
 					ProductCategory category = new ProductCategory();
 					category.setCategoryID(rs.getLong(1));
 					category.setCategoryName(rs.getString(2));
-					category.setParentCategoryID(rs.getLong(3));
+					category.setChildID(rs.getLong(3));
 					// 子项SQL语句
 					String childSQL = "select * from hwua_product_category where hpc_id <> hpc_parent_id and hpc_parent_id = ?";
 					try {
@@ -73,7 +73,7 @@ public class ProductCategoryDaoImpl implements IProductCategoryDao {
 									ProductCategory chlidCategory = new ProductCategory();
 									chlidCategory.setCategoryID(rs.getLong(1));
 									chlidCategory.setCategoryName(rs.getString(2));
-									chlidCategory.setParentCategoryID(rs.getLong(3));
+									chlidCategory.setChildID(rs.getLong(3));
 									category.getList().add(chlidCategory);
 								}
 							}

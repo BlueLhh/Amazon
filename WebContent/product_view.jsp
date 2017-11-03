@@ -29,20 +29,20 @@
 			<%@ include file="index_product_sort.jsp"%>
 		</div>
 		<div id="product" class="main">
-			<c:set var="p" value=""></c:set>
-			<h1>商品名称:</h1>
+			<c:set var="p" value="${requestScope.product}"></c:set>
+			<h1>商品名称:${p.productName}</h1>
 			<div class="infos">
 				<div class="thumb">
-					<img style="width: 100px; height: 100px;" src="" />
+					<img style="width: 100px; height: 100px;" src="${p.fileName}" />
 				</div>
 				<div class="buy">
 					<p>
-						商城价：<span class="price">￥</span>
+						商城价：<span class="price">￥${p.price}</span>
 					</p>
 					<c:choose>
-						<c:when test="">
+						<c:when test="${p.stock > 0}">
 							<p>
-								库 存：<span id="stock"></span>(有货)
+								库 存：<span id="stock">${p.stock}</span>(有货)
 							</p>
 						</c:when>
 						<c:otherwise>
@@ -56,7 +56,7 @@
 					<input type="button" id="add" value=" + " width="2px"
 						onclick="add();">
 					<c:choose>
-						<c:when test="">
+						<c:when test="${p.stock <= 0}">
 							<div class="button">
 								<input type="button" name="button" value="" onclick="remaind();"
 									style="background: url(images/buyNow.png)" /> <input type="image"
@@ -67,10 +67,10 @@
 						<c:otherwise>
 							<div class="button">
 								<input type="button" name="button" value=""
-									onclick="goingToBuy(${p.hpId });"
+									onclick="goingToBuy(${p.productID });"
 									style="background: url(images/buyNow.png)" /> <input type="image"
 									name="imageField" src="images/cartbutton.png"
-									onclick="addToCart(${p.hpId });" />
+									onclick="addToCart(${p.productID });" />
 							</div>
 						</c:otherwise>
 					</c:choose>
@@ -83,8 +83,8 @@
 					<strong>商品详情</strong>
 				</h2>
 				<div class="text">
-					商品名字：<br /> 商品描述：<br />
-					商品价格：￥<br /> 商品库存：<br />
+					商品名字：${p.productName}<br /> 商品描述：${p.description}<br />
+					商品价格：￥${p.price}<br /> 商品库存：${p.stock}<br />
 				</div>
 			</div>
 		</div>
