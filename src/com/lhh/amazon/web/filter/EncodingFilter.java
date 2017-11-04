@@ -28,21 +28,18 @@ public class EncodingFilter implements Filter {
 	// 初始化
 	@Override
 	public void init(FilterConfig config) throws ServletException {
-		// System.out.println("EncodingFilter----init");
 		// 获取encoding
 		String value = config.getInitParameter("encoding");
 		// 判断，如果value为空，则encoding的编码为 gbk
 		if (value != null && !value.equals("")) {
 			encoding = value;
 		}
-		// System.out.println("encoding:" + encoding);
 	}
 
 	// 过滤方法，在访问指定资源前后都经过此方法
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		// System.out.println("EncodingFilter----doFilter");
 		// 把请求和相应对象强转成http的
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
@@ -50,16 +47,13 @@ public class EncodingFilter implements Filter {
 		req.setCharacterEncoding(encoding);
 		// 设置相应的编码
 		resp.setContentType("text/html;charset=" + encoding);
-		// System.out.println("EncodingFilter----doFilter----start");
 		// 注意，如果要方形，必须调用此方法，否则会阻塞在本过滤器中
 		chain.doFilter(req, resp);
-		// System.out.println("EncodingFilter----doFilter----end");
 	}
 
 	// 销毁
 	@Override
 	public void destroy() {
-		// System.out.println("EncodingFilter----destroy");
 	}
 
 }

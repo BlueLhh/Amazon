@@ -24,8 +24,6 @@ public class AddCommentServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// response.getWriter().append("Served at:
-		// ").append(request.getContextPath());
 
 		// 获取内容
 		String nickname = request.getParameter("guestName");
@@ -34,13 +32,6 @@ public class AddCommentServlet extends HttpServlet {
 
 		// 获取当前的日期
 		Date date = new Date();
-		// SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		// String time = sdf.format(date);
-		// try {
-		// date = sdf.parse(time);
-		// } catch (ParseException e) {
-		// e.printStackTrace();
-		// }
 
 		ICommentService commentService = new CommentServiceImpl();
 		Comment comment = new Comment();

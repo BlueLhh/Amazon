@@ -66,7 +66,7 @@
 					<h4>找不到您搜索的商品！</h4>
 				</c:if>
 				<c:set value="" var="products"></c:set>
-				<c:forEach items="${requestScope.product}" var="p">
+				<c:forEach items="${sessionScope.product}" var="p">
 					<li>
 						<dl>
 							<dt>
@@ -89,8 +89,8 @@
 				<ul>
 					<ul>
 						<li><a href="javascript:lastPage()" id="lastPage">上一页</a></li>
-						<c:forEach items="" var="pl">
-							<li><a href="ref"></a></li>
+						<c:forEach begin="1" end="${sessionScope.page }" varStatus="varStatus"  var="pl">
+							<li><a href="ref?${varStatus.index }">${varStatus.index }</a></li>
 						</c:forEach>
 						<li><a href="javascript:nextPage()" id="nextPage">下一页</a></li>
 					</ul>

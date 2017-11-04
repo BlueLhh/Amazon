@@ -24,8 +24,6 @@ public class ProductPviewServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// response.getWriter().append("Served at:
-		// ").append(request.getContextPath());
 		// 获取点击之后的ID
 		String id = request.getParameter("id");
 		Long productID = Long.parseLong(id);

@@ -13,4 +13,10 @@ public interface IProductDao {
 
 	public Product select(Long id, Connection conn) throws DataAccessException;
 
+	// 条件查询
+	public List<Product> select(List<String> condition, Connection conn) throws DataAccessException;
+
+	// 分页查询
+	public List<Product> select(List<String> condition, int page, Connection conn) throws DataAccessException;
+
 }

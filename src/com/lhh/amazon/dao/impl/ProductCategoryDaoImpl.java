@@ -88,4 +88,37 @@ public class ProductCategoryDaoImpl implements IProductCategoryDao {
 
 		return parentList;
 	}
+
+	@Override
+	public List<ProductCategory> select(List<String> condition, Connection conn) throws DataAccessException {
+
+		JdbcTemplate jt = new JdbcTemplate(conn);
+
+		List<ProductCategory> list = new ArrayList<ProductCategory>();
+
+		String sql = "select * " + "from hwua_product_category " + "where 1 = 1";
+
+		if (condition.size() > 0) {
+			for (String conditions : condition) {
+				sql += " and ";
+				sql += conditions;
+			}
+		}
+
+		jt.query(sql, new RowCallBackHandler() {
+
+			@Override
+			public void processRow(ResultSet rs) throws SQLException {
+				while (rs.next()) {
+					ProductCategory pc = new ProductCategory();
+					pc.setCategoryID(rs.getLong(1));
+					pc.setCategoryName(rs.getString(2));
+					pc.setChildID(rs.getLong(3));
+					list.add(pc);
+				}
+			}
+		});
+
+		return list;
+	}
 }

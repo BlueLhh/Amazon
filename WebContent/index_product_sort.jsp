@@ -7,14 +7,14 @@
 
 	<c:set var="categoryInfo" value=""></c:set>
 
-	<c:forEach items="${requestScope.Category}" var="c">
+	<c:forEach items="${sessionScope.Category}" var="c">
 		<dl>
 			<dt>
-				<a href="category">${c.categoryName}</a>
+				<a href="category?cate=max&hpc_parent_id=${c.childID}">${c.categoryName}</a>
 			</dt>
 			<c:forEach items="${c.list}" var="child">
 				<dd>
-					<a href="category">${child.categoryName}</a>
+					<a href="category?cate=min&hpc_id=${child.categoryID}">${child.categoryName}</a>
 				</dd>
 			</c:forEach>
 		</dl>

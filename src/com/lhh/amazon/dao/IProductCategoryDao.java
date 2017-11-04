@@ -11,4 +11,7 @@ public interface IProductCategoryDao {
 	public List<ProductCategory> select(Connection conn) throws DataAccessException;
 
 	public List<ProductCategory> bestSelect(Connection conn) throws DataAccessException;
+
+	// 条件查询
+	public List<ProductCategory> select(List<String> condition, Connection conn) throws DataAccessException;
 }
