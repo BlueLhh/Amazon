@@ -33,6 +33,7 @@ public class CategoryServlet extends HttpServlet {
 		// 定义id
 		Long id;
 		int page = 1;// 初始页数为1
+		int allPage = 0;
 		List<Product> list = null;
 		String cate = request.getParameter("cate");
 		if (cate.equals("max") && cate != null) {
@@ -43,10 +44,10 @@ public class CategoryServlet extends HttpServlet {
 			conditions.add("hpc_id = " + id);
 			try {
 				// 通过父级查找商品的信息
-				//list = ips.showProduct(conditions);
+				// list = ips.showProduct(conditions);
 				list = ips.showProduct(conditions, page);
 				// request.setAttribute("product", list);
-				page = ips.totalPage(conditions);
+				allPage = ips.totalPage(conditions);
 				// System.out.println("父级的页数为：" + page + 1);
 			} catch (ServiceException e) {
 				e.printStackTrace();
@@ -58,9 +59,9 @@ public class CategoryServlet extends HttpServlet {
 			conditions.add("hpc_child_id = " + id);
 			try {
 				// 通过子级查找商品的信息
-				//list = ips.showProduct(conditions);
+				// list = ips.showProduct(conditions);
 				list = ips.showProduct(conditions, page);
-				page = ips.totalPage(conditions);
+				allPage = ips.totalPage(conditions);
 				// request.setAttribute("product", list);
 				// System.out.println("子级的页数为：" + page + 1);
 			} catch (ServiceException e) {
@@ -70,7 +71,8 @@ public class CategoryServlet extends HttpServlet {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
 		session.setAttribute("product", list);
-		session.setAttribute("page", page);
+		session.setAttribute("page", allPage);
+		request.setAttribute("pageNow", page);
 		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 		rd.forward(request, response);
 	}

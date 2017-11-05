@@ -90,15 +90,15 @@
 					<ul>
 						<li><a href="javascript:lastPage()" id="lastPage">上一页</a></li>
 						<c:forEach begin="1" end="${sessionScope.page }" varStatus="varStatus"  var="pl">
-							<li><a href="ref?${varStatus.index }">${varStatus.index }</a></li>
+							<li><a href="ref?page=${varStatus.index }">${varStatus.index }</a></li>
 						</c:forEach>
 						<li><a href="javascript:nextPage()" id="nextPage">下一页</a></li>
 					</ul>
 				</ul>
 				<input type="hidden" id="source" value="" />
 				<input type="hidden" id="hpcId" value="" /> 
-				<input type="hidden" id="totalPage" value="" /> 
-				<input type="hidden" id="currentPage" value="" /> 
+				<input type="hidden" id="totalPage" value="${sessionScope.page }" /> 
+				<input type="hidden" id="currentPage" value="${requestScope.pageNow }" /> 
 				<input type="hidden" id="queryName" value="" />
 			</div>
 		</div>

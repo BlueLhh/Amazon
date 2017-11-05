@@ -4,6 +4,7 @@ import java.sql.Connection;
 
 import com.lhh.amazon.common.ConnectionFactory;
 import com.lhh.amazon.common.DBUtils;
+import com.lhh.amazon.common.DataAccessException;
 import com.lhh.amazon.common.ServiceException;
 import com.lhh.amazon.dao.IUserDao;
 import com.lhh.amazon.dao.impl.UserDaoImpl;
@@ -67,6 +68,23 @@ public class UserServiceImpl implements IUserService {
 			user = dao.insert(conn, user);
 		} catch (Exception e) {
 			throw new ServiceException("注册失败！");
+		} finally {
+			DBUtils.close(null, null, conn);
+		}
+		return user;
+	}
+
+	// 通过用户名来查询用户
+	@Override
+	public User findUser(String username) throws ServiceException {
+		Connection conn = null;
+		User user;
+
+		conn = ConnectionFactory.getConnection();
+		try {
+			user = dao.select(conn, username);
+		} catch (DataAccessException e) {
+			throw new ServiceException("查询失败！");
 		} finally {
 			DBUtils.close(null, null, conn);
 		}

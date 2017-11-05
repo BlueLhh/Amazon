@@ -51,9 +51,11 @@ public class ProductFilter implements Filter {
 		HttpSession session = req.getSession();
 		session.setAttribute("product", list);
 		session.setAttribute("page", allPage);
+		request.setAttribute("pageNow", page);
 		// 放行资源
 		chain.doFilter(request, response);
 	}
+
 	public void init(FilterConfig fConfig) throws ServletException {
 	}
 

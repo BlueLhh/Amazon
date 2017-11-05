@@ -27,16 +27,17 @@ public class ProductPviewServlet extends HttpServlet {
 		// 获取点击之后的ID
 		String id = request.getParameter("id");
 		Long productID = Long.parseLong(id);
-		
+
+		/* 这是获取点击的商品ID之后跳转到的显示商品详细信息的界面 */
 		IProductService ips = new ProductServicempl();
 		Product product = new Product();
-		
+
 		try {
 			product = ips.findProduct(productID);
-			//查找成功，保存
+			// 查找成功，保存
 			request.setAttribute("product", product);
-			//跳转界面
-			//response.sendRedirect("product_view.jsp");
+			// 跳转界面
+			// response.sendRedirect("product_view.jsp");
 			RequestDispatcher rd = request.getRequestDispatcher("product_view.jsp");
 			rd.forward(request, response);
 		} catch (ServiceException e) {
