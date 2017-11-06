@@ -27,7 +27,7 @@
 			<ul class="m_right">
 				<c:choose>
 					<c:when test="${sessionScope.user.username!=null}">
-						<li><img src="images/icon_3.png"><a href="shopping.jsp"
+						<li><img src="images/icon_3.png"><a href="ShoppingCartServlet"
 							class="c_red">购物车</a></li>
 					</c:when>
 					<c:otherwise>

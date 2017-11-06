@@ -106,4 +106,44 @@ public class CartServiceImpl implements ICartService {
 		}
 		return list;
 	}
+
+	// 通过商品的ID和用户的ID来查询购物车内的信息是否存在
+	@Override
+	public boolean checkCart(Long pid, Long userid) throws ServiceException {
+
+		Connection conn;
+		conn = ConnectionFactory.getConnection();
+		Cart cart;
+		try {
+			cart = dao.select(pid, userid, conn);
+		} catch (DataAccessException e) {
+			throw new ServiceException("查找失败！");
+		} finally {
+			DBUtils.close(null, null, conn);
+		}
+
+		if (cart == null || cart.getCartID() == -1) {
+			// 不存在
+			return false;
+		} else {
+			// 存在
+			return true;
+		}
+	}
+
+	@Override
+	public Cart findCart(Long pid, Long userid) throws ServiceException {
+		
+		Connection conn;
+		conn = ConnectionFactory.getConnection();
+		Cart cart;
+		try {
+			cart = dao.select(pid, userid, conn);
+		} catch (DataAccessException e) {
+			throw new ServiceException("查找失败！");
+		} finally {
+			DBUtils.close(null, null, conn);
+		}
+		return cart;
+	}
 }

@@ -56,7 +56,7 @@
 					<input type="button" id="add" value=" + " width="2px"
 						onclick="add();">
 					<c:choose>
-						<c:when test="${p.stock <= 0}">
+						<c:when test="${sessionScope.user.username == null }">
 							<div class="button">
 								<input type="button" name="button" value="" onclick="remaind();"
 									style="background: url(images/buyNow.png)" /> <input type="image"

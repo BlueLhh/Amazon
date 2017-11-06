@@ -34,7 +34,6 @@ public class RefProdcutServlet extends HttpServlet {
 		IProductService ips = new ProductServicempl();
 		List<Product> list = null;
 		List<String> condition = new ArrayList<String>();
-
 		try {
 			list = ips.showProduct(condition, page);
 		} catch (ServiceException e) {

@@ -17,10 +17,10 @@ import com.lhh.amazon.service.impl.ProductServicempl;
 public class GetPage {
 	public static void main(String[] args) {
 		IProductService ips = new ProductServicempl();
-		// Long id = 22L;
+		//Long id = 22L;
 		// 写条件
 		List<String> conditions = new ArrayList<String>();
-		int page = 6;
+		int page = 1;
 		List<Product> list;
 
 		try {

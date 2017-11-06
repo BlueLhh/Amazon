@@ -139,4 +139,32 @@ public class CartDaoImpl implements ICartDao {
 		});
 		return list;
 	}
+
+	// 通过用户id和商品的id来进行查询该数据是否存在
+	@Override
+	public Cart select(Long pid, Long userid, Connection conn) throws DataAccessException {
+		JdbcTemplate jt = new JdbcTemplate(conn);
+		Cart cart = new Cart();
+		String sql = "select * from hwua_cart where pid = ? and userid = ?";
+		jt.query(sql, new PreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement pstmt) throws SQLException {
+				pstmt.setLong(1, pid);
+				pstmt.setLong(2, userid);
+			}
+		}, new RowCallBackHandler() {
+
+			@Override
+			public void processRow(ResultSet rs) throws SQLException {
+				if (rs.next()) {
+					cart.setCartID(rs.getLong(1));
+					cart.setProductID(rs.getLong(2));
+					cart.setQuantity(rs.getInt(3));
+					cart.setUserID(rs.getLong(4));
+				}
+			}
+		});
+		return cart;
+	}
 }

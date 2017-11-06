@@ -20,7 +20,12 @@ public interface ICartService {
 
 	// 当结算的时候删除购物车内该用户所有的信息
 	public void deleteAllCart(Long userid) throws ServiceException;
-	
+
 	// 查询用户在购物车内的全部商品信息
-	public List<Cart> showCart(Long userid)throws ServiceException;
+	public List<Cart> showCart(Long userid) throws ServiceException;
+
+	// 通过商品的ID和用户的ID来查询数据库中是否存在该信息
+	public boolean checkCart(Long pid, Long userid) throws ServiceException;
+
+	public Cart findCart(Long pid, Long userid) throws ServiceException;
 }

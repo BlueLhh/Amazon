@@ -45,4 +45,7 @@ public interface ICartDao {
 	// 显示当前用户全部的购物车信息
 	public List<Cart> select(Long userid, Connection conn) throws DataAccessException;
 
+	// 通过用户ID和商品的ID进行查询数据表里是否存在该数据
+	public Cart select(Long pid, Long userid, Connection conn) throws DataAccessException;
+
 }
