@@ -39,7 +39,6 @@
 						<th>操作</th>
 					</tr>
 
-
 					<!-- 根据用户购物车生成列表 -->
 					<c:forEach items="${requestScope.cart}" var="shopping">
 						<tr id="product_id_1">

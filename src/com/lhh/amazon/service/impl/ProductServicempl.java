@@ -111,4 +111,18 @@ public class ProductServicempl implements IProductService {
 
 		return list;
 	}
+
+	// 更新库存
+	@Override
+	public void updateStock(Long id, int stock) throws ServiceException {
+		Connection conn;
+		conn = ConnectionFactory.getConnection();
+		try {
+			dao.update(id, stock, conn);
+		} catch (DataAccessException e) {
+			throw new ServiceException("更新失败！");
+		} finally {
+			DBUtils.close(null, null, conn);
+		}
+	}
 }

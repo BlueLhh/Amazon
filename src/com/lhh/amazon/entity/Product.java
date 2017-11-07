@@ -1,5 +1,8 @@
 package com.lhh.amazon.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 
  * 产品实体类
@@ -17,8 +20,10 @@ public class Product {
 	private ProductCategory childID = new ProductCategory();// 子项ID
 	private String fileName;// 文件名字
 
+	private List<OrderDetail> list = new ArrayList<OrderDetail>();
+
 	public Product(Long productID, String productName, String description, double price, int stock,
-			ProductCategory categoryID, ProductCategory childID, String fileName) {
+			ProductCategory categoryID, ProductCategory childID, String fileName, List<OrderDetail> list) {
 		super();
 		this.productID = productID;
 		this.productName = productName;
@@ -28,6 +33,7 @@ public class Product {
 		this.categoryID = categoryID;
 		this.childID = childID;
 		this.fileName = fileName;
+		this.list = list;
 	}
 
 	public Product() {
@@ -98,11 +104,19 @@ public class Product {
 		this.fileName = fileName;
 	}
 
+	public List<OrderDetail> getList() {
+		return list;
+	}
+
+	public void setList(List<OrderDetail> list) {
+		this.list = list;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [productID=" + productID + ", productName=" + productName + ", description=" + description
-				+ ", price=" + price + ", stock=" + stock + ", categoryID=" + categoryID + ", childID=" + childID
-				+ ", fileName=" + fileName + "]";
+				+ ", price=" + price + ", stock=" + stock + ", categoryID=" + categoryID.getCategoryID() + ", childID="
+				+ childID.getChildID() + ", fileName=" + fileName + ", list=" + list + "]";
 	}
 
 }

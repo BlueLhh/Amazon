@@ -1,5 +1,8 @@
 package com.lhh.amazon.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 
  * 订单子项实体类
@@ -13,15 +16,18 @@ public class OrderDetail {
 	private Product product = new Product();// 产品ID，外键
 	private int quantity;// 数量
 	private double cost;// 总价
-	// private List<Order> list = new ArrayList<Order>();
 
-	public OrderDetail(Long orderDetailID, Order order, Product product, int quantity, double cost) {
+	private List<Product> pList = new ArrayList<Product>();
+
+	public OrderDetail(Long orderDetailID, Order order, Product product, int quantity, double cost,
+			List<Product> pList) {
 		super();
 		this.orderDetailID = orderDetailID;
 		this.order = order;
 		this.product = product;
 		this.quantity = quantity;
 		this.cost = cost;
+		this.pList = pList;
 	}
 
 	public OrderDetail() {
@@ -68,10 +74,18 @@ public class OrderDetail {
 		this.cost = cost;
 	}
 
+	public List<Product> getpList() {
+		return pList;
+	}
+
+	public void setpList(List<Product> pList) {
+		this.pList = pList;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderDetail [orderDetailID=" + orderDetailID + ", order=" + order.getOrderID() + ", product=" + product.getProductID()
-				+ ", quantity=" + quantity + ", cost=" + cost + "]";
+				+ ", quantity=" + quantity + ", cost=" + cost + ", pList=" + pList + "]";
 	}
 
 }

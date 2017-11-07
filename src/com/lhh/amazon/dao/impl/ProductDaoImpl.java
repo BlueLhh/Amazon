@@ -76,10 +76,31 @@ public class ProductDaoImpl implements IProductDao {
 					product.getCategoryID().setCategoryID(rs.getLong(6));
 					product.getChildID().setChildID(rs.getLong(7));
 					product.setFileName(rs.getString(8));
+					// // 根据商品ID来查询子订单的信息
+					// String childSQL = "select * from hwua_order_detail where
+					// hp_id = ?";
+					// try {
+					// jt.query(childSQL, new PreparedStatementSetter() {
+					//
+					// @Override
+					// public void setValues(PreparedStatement pstmt) throws
+					// SQLException {
+					//
+					// }
+					// }, new RowCallBackHandler() {
+					//
+					// @Override
+					// public void processRow(ResultSet rs) throws SQLException
+					// {
+					//
+					// }
+					// });
+					// } catch (DataAccessException e) {
+					// e.printStackTrace();
+					// }
 				}
 			}
 		});
-
 		return product;
 	}
 
@@ -163,5 +184,21 @@ public class ProductDaoImpl implements IProductDao {
 			}
 		});
 		return list;
+	}
+
+	// 根据商品的ID进行修改商品的库存
+	@Override
+	public void update(Long id, int stcok, Connection conn) throws DataAccessException {
+		JdbcTemplate jt = new JdbcTemplate(conn);
+		// 更新的SQL语句
+		String sql = "update hwua_product set hp_stock = ? where hp_id = ?";
+		jt.update(sql, new PreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement pstmt) throws SQLException {
+				pstmt.setLong(1, stcok);
+				pstmt.setLong(2, id);
+			}
+		});
 	}
 }

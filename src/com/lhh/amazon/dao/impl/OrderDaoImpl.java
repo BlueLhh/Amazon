@@ -14,6 +14,7 @@ import com.lhh.amazon.common.RowCallBackHandler;
 import com.lhh.amazon.dao.IOrderDao;
 import com.lhh.amazon.entity.Order;
 import com.lhh.amazon.entity.OrderDetail;
+import com.lhh.amazon.entity.Product;
 
 public class OrderDaoImpl implements IOrderDao {
 
@@ -71,7 +72,7 @@ public class OrderDaoImpl implements IOrderDao {
 					order.getUser().setUserID(rs.getLong(2));
 					order.setUsername(rs.getString(3));
 					order.setUserAddress(rs.getString(4));
-					order.setCreateTime(rs.getTimestamp(5));
+					order.setCreateTime(rs.getDate(5));
 					order.setCost(rs.getDouble(6));
 					order.setStatus(rs.getInt(7));
 					order.setType(rs.getInt(8));
@@ -94,6 +95,33 @@ public class OrderDaoImpl implements IOrderDao {
 									od.getProduct().setProductID(rs.getLong(3));
 									od.setQuantity(rs.getInt(4));
 									od.setCost(rs.getDouble(5));
+									// ******开始******//
+									Long pid;
+									pid = od.getProduct().getProductID();
+									String pidSQL = "select * from hwua_product where hp_id = " + pid;
+									try {
+										jt.query(pidSQL, new RowCallBackHandler() {
+
+											@Override
+											public void processRow(ResultSet rs) throws SQLException {
+												while (rs.next()) {
+													Product product = new Product();
+													product.setProductID(rs.getLong(1));
+													product.setProductName(rs.getNString(2));
+													product.setDescription(rs.getNString(3));
+													product.setPrice(rs.getDouble(4));
+													product.setStock(rs.getInt(5));
+													product.getCategoryID().setCategoryID(rs.getLong(6));
+													product.getChildID().setChildID(rs.getLong(7));
+													product.setFileName(rs.getString(8));
+													od.getpList().add(product);
+												}
+											}
+										});
+									} catch (DataAccessException e) {
+										e.printStackTrace();
+									}
+									// ******结束******//
 									order.getList().add(od);
 								}
 							}

@@ -7,17 +7,18 @@ import com.lhh.amazon.service.impl.OrderServiceImpl;
 
 /**
  * 根据ID查找订单信息
+ * 
  * @author 46512
  *
  */
 public class FindOrder {
 	public static void main(String[] args) {
 		IOrderService ios = new OrderServiceImpl();
-		Long id = 20171106234916L;
+		Long id = 20171107111915L;
 		Order order;
 		try {
 			order = ios.findOrder(id);
-			System.out.println(order);
+			System.out.println(order.getList().get(2).getpList().get(0).getFileName());
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
