@@ -64,7 +64,7 @@ public class AddToCartServlet extends HttpServlet {
 
 		} else {
 			// 不存在 创建新的
-			cart.setProductID(pid);
+			cart.getProduct().setProductID(pid);
 			cart.setQuantity(num);
 			cart.setUserID(userid);
 			try {

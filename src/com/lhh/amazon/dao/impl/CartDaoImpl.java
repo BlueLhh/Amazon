@@ -39,7 +39,7 @@ public class CartDaoImpl implements ICartDao {
 			@Override
 			public void setValues(PreparedStatement pstmt) throws SQLException {
 				pstmt.setLong(1, cart.getCartID());
-				pstmt.setLong(2, cart.getProductID());
+				pstmt.setLong(2, cart.getProduct().getProductID());
 				pstmt.setInt(3, cart.getQuantity());
 				pstmt.setLong(4, cart.getUserID());
 			}
@@ -130,7 +130,7 @@ public class CartDaoImpl implements ICartDao {
 				while (rs.next()) {
 					Cart cart = new Cart();
 					cart.setCartID(rs.getLong(1));
-					cart.setProductID(rs.getLong(2));
+					cart.getProduct().setProductID(rs.getLong(2));
 					cart.setQuantity(rs.getInt(3));
 					cart.setUserID(rs.getLong(4));
 					list.add(cart);
@@ -159,7 +159,7 @@ public class CartDaoImpl implements ICartDao {
 			public void processRow(ResultSet rs) throws SQLException {
 				if (rs.next()) {
 					cart.setCartID(rs.getLong(1));
-					cart.setProductID(rs.getLong(2));
+					cart.getProduct().setProductID(rs.getLong(2));
 					cart.setQuantity(rs.getInt(3));
 					cart.setUserID(rs.getLong(4));
 				}

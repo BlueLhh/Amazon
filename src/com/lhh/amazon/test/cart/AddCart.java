@@ -20,7 +20,7 @@ public class AddCart {
 		int quantity = 10;
 		Long userid = 2L;
 
-		cart.setProductID(pid);
+		cart.getProduct().setProductID(pid);
 		cart.setQuantity(quantity);
 		cart.setUserID(userid);
 

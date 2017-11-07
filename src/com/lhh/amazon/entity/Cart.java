@@ -8,14 +8,14 @@ package com.lhh.amazon.entity;
  */
 public class Cart {
 	private Long cartID = -1L;// 购物车内每一条商品的ID
-	private Long productID;// 产品ID
+	private Product product = new Product();// 产品ID
 	private int quantity;// 数量
 	private Long userID;// 用户ID
 
-	public Cart(Long cartID, Long productID, int quantity, Long userID) {
+	public Cart(Long cartID, Product product, int quantity, Long userID) {
 		super();
 		this.cartID = cartID;
-		this.productID = productID;
+		this.product = product;
 		this.quantity = quantity;
 		this.userID = userID;
 	}
@@ -32,12 +32,12 @@ public class Cart {
 		this.cartID = cartID;
 	}
 
-	public Long getProductID() {
-		return productID;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProductID(Long productID) {
-		this.productID = productID;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public int getQuantity() {
@@ -58,7 +58,7 @@ public class Cart {
 
 	@Override
 	public String toString() {
-		return "Cart [cartID=" + cartID + ", productID=" + productID + ", quantity=" + quantity + ", userID=" + userID
+		return "Cart [cartID=" + cartID + ", product=" + product + ", quantity=" + quantity + ", userID=" + userID
 				+ "]";
 	}
 

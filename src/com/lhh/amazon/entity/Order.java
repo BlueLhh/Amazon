@@ -1,6 +1,8 @@
 package com.lhh.amazon.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 
@@ -11,25 +13,27 @@ import java.util.Date;
  */
 public class Order {
 	private Long orderID;// 订单ID
-	private User userID;// 用户ID 外键
+	private User user = new User();// 用户ID 外键
 	private String username;// 用户名
 	private String userAddress;// 用户地址
 	private Date createTime;// 订单创建时间
 	private double cost;// 总价
 	private int status;// 状态
 	private int type;// 类型
+	private List<OrderDetail> list = new ArrayList<OrderDetail>();
 
-	public Order(Long orderID, User userID, String username, String userAddress, Date createTime, double cost,
-			int status, int type) {
+	public Order(Long orderID, User user, String username, String userAddress, Date createTime, double cost, int status,
+			int type, List<OrderDetail> list) {
 		super();
 		this.orderID = orderID;
-		this.userID = userID;
+		this.user = user;
 		this.username = username;
 		this.userAddress = userAddress;
 		this.createTime = createTime;
 		this.cost = cost;
 		this.status = status;
 		this.type = type;
+		this.list = list;
 	}
 
 	public Order() {
@@ -44,12 +48,12 @@ public class Order {
 		this.orderID = orderID;
 	}
 
-	public User getUserID() {
-		return userID;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserID(User userID) {
-		this.userID = userID;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getUsername() {
@@ -100,4 +104,18 @@ public class Order {
 		this.type = type;
 	}
 
+	public List<OrderDetail> getList() {
+		return list;
+	}
+
+	public void setList(List<OrderDetail> list) {
+		this.list = list;
+	}
+
+	@Override
+	public String toString() {
+		return "Order [orderID=" + orderID + ", user=" + user.getUserID() + ", username=" + username + ", userAddress="
+				+ userAddress + ", createTime=" + createTime + ", cost=" + cost + ", status=" + status + ", type="
+				+ type + ", list=" + list + "]";
+	}
 }

@@ -27,7 +27,7 @@ function addToCart(pid) {
 }
 
 function goingToBuy(pid) {
-	window.location.href = "goingToBuy?" + pid + "_" + $("#count").val();
+	window.location.href = "goingToBuy?pid=" + pid + "&count=" + $("#count").val();
 
 }
 

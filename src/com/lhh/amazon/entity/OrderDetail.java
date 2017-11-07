@@ -9,16 +9,17 @@ package com.lhh.amazon.entity;
  */
 public class OrderDetail {
 	private Long orderDetailID;// 子订单ID
-	private Order orderID;// 订单ID，外键
-	private Product productID;// 产品ID，外键
+	private Order order = new Order();// 订单ID，外键
+	private Product product = new Product();// 产品ID，外键
 	private int quantity;// 数量
 	private double cost;// 总价
+	// private List<Order> list = new ArrayList<Order>();
 
-	public OrderDetail(Long orderDetailID, Order orderID, Product productID, int quantity, double cost) {
+	public OrderDetail(Long orderDetailID, Order order, Product product, int quantity, double cost) {
 		super();
 		this.orderDetailID = orderDetailID;
-		this.orderID = orderID;
-		this.productID = productID;
+		this.order = order;
+		this.product = product;
 		this.quantity = quantity;
 		this.cost = cost;
 	}
@@ -35,20 +36,20 @@ public class OrderDetail {
 		this.orderDetailID = orderDetailID;
 	}
 
-	public Order getOrderID() {
-		return orderID;
+	public Order getOrder() {
+		return order;
 	}
 
-	public void setOrderID(Order orderID) {
-		this.orderID = orderID;
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 
-	public Product getProductID() {
-		return productID;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProductID(Product productID) {
-		this.productID = productID;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public int getQuantity() {
@@ -65,6 +66,12 @@ public class OrderDetail {
 
 	public void setCost(double cost) {
 		this.cost = cost;
+	}
+
+	@Override
+	public String toString() {
+		return "OrderDetail [orderDetailID=" + orderDetailID + ", order=" + order.getOrderID() + ", product=" + product.getProductID()
+				+ ", quantity=" + quantity + ", cost=" + cost + "]";
 	}
 
 }

@@ -31,7 +31,7 @@ public class FindProductTest {
 			cList = ics.showCart(userid);
 			for (Cart cart : cList) {
 				System.out.println(cart);
-				Long id = cart.getProductID();
+				Long id = cart.getProduct().getProductID();
 				pdt = ips.findProduct(id);
 				pList.add(pdt);
 //				List<String> conditions = new ArrayList<String>();

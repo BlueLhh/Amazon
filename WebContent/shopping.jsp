@@ -41,24 +41,25 @@
 
 
 					<!-- 根据用户购物车生成列表 -->
-					<c:forEach items="${requestScope.product}" var="shopping">
+					<c:forEach items="${requestScope.cart}" var="shopping">
 						<tr id="product_id_1">
+							<c:set var="product" value="${shopping.product}"></c:set>
 							<td class="thumb"><img style="width: 100px; height: 100px;"
-								src="${shopping.fileName}" /><a href="pview?id=${shopping.productID}">${shopping.productName}</a></td>
-							<td class="price" id="price_id_1">￥${shopping.price}<span id="span_1"></span>
+								src="${product.fileName}" /><a href="pview?id=${product.productID}">${product.productName}</a></td>
+							<td class="price" id="price_id_1">￥${product.price}<span id="span_1"></span>
 								<input type="hidden" id="subPrice" value="" name="sumPrice" />
 								<input type="hidden" value="" name="pId" /> 
-								<input type="hidden" value="" name="hpStock" id="hpStock${shopping.stock }" />
+								<input type="hidden" value="${product.stock}" name="hpStock" id="hpStock${shopping.cartID }" />
 
 							</td>
 							<td class="number"><c:set var="hcid" value=""></c:set> <input
 								type="button" id="minus" value=" - " width="3px"
 								onclick=" reduce()" name="minusButton"> <input
-								id="${hcid }" type="text" name="number" value="" maxlength="5"
+								id="${hcid }" type="text" name="number" value="${shopping.quantity}" maxlength="5"
 								size="1" style="text-align: center; vertical-align: middle"
 								onblur="checkStock()" /> <input type="button" id="add"
 								value=" + " width="2px" onclick=" increase()" name="addButton"></td>
-							<td class="delete"><a href="deleteCart">删除</a></td>
+							<td class="delete"><a href="deleteCart?cid=${shopping.cartID}">删除</a></td>
 						</tr>
 					</c:forEach>
 				</table>

@@ -26,7 +26,24 @@ public class OrderServiceImpl implements IOrderService {
 		try {
 			order = dao.insert(order, conn);
 		} catch (DataAccessException e) {
+			e.printStackTrace();
 			throw new ServiceException("添加失败！");
+		} finally {
+			DBUtils.close(null, null, conn);
+		}
+		return order;
+	}
+
+	@Override
+	public Order findOrder(Long id) throws ServiceException {
+
+		Connection conn;
+		Order order = new Order();
+		conn = ConnectionFactory.getConnection();
+		try {
+			order = dao.select(id, conn);
+		} catch (DataAccessException e) {
+			throw new ServiceException("查找失败！");
 		} finally {
 			DBUtils.close(null, null, conn);
 		}
