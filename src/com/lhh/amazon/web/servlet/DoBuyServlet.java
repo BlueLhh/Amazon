@@ -66,7 +66,6 @@ public class DoBuyServlet extends HttpServlet {
 				// 获取该购物车内的商品的总价
 				orderCost += product.getPrice() * cart.getQuantity();
 			}
-			System.out.println("订单总额为：" + orderCost);
 			// 获取时间戳作为订单的ID
 			Date time = new Date();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
