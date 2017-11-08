@@ -120,6 +120,7 @@ public class DoBuyServlet extends HttpServlet {
 				// 根据商品的ID进行库存的修改
 				ips.updateStock(pid, stock);
 			}
+			// 清空购物车
 			ics.deleteAllCart(userid);
 			// 查询订单
 			order = ios.findOrder(orderid);
