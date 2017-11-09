@@ -70,9 +70,9 @@ public class DoBuyServlet extends HttpServlet {
 			Date time = new Date();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 			Long orderid = Long.parseLong(sdf.format(time));
-			// 初始化状态和类别
-			int status = 1;
-			int type = 1;
+			// 初始化状态和类别 都为0
+			int status = 0;
+			int type = 0;
 			// 开始添加订单
 			order.setOrderID(orderid);
 			order.getUser().setUserID(userid);

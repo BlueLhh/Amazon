@@ -207,7 +207,7 @@ public class OrderDaoImpl implements IOrderDao {
 									od.setQuantity(rs.getInt(4));
 									od.setCost(rs.getDouble(5));
 									// 查找商品
-										Long pid;
+									Long pid;
 									pid = od.getProduct().getProductID();
 									String pidSQL = "select * from hwua_product where hp_id = " + pid;
 									try {
@@ -244,5 +244,43 @@ public class OrderDaoImpl implements IOrderDao {
 			}
 		});
 		return list;
+	}
+
+	// 根据订单的ID进行状态的修改
+	@Override
+	public void update(Long orderid, Connection conn) throws DataAccessException {
+		JdbcTemplate jt = new JdbcTemplate(conn);
+		// SQL 语句 更改状态
+		String sql = "update hwua_order set ho_status = 1,ho_type = 1 where ho_id = ?";
+		jt.update(sql, new PreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement pstmt) throws SQLException {
+				pstmt.setLong(1, orderid);
+			}
+		});
+	}
+
+	@Override
+	public void delete(Long orderid, Connection conn) throws DataAccessException {
+		JdbcTemplate jt = new JdbcTemplate(conn);
+		// 先删除子订单
+		String sqlChild = "delete from hwua_order_detail where ho_id = ?";
+		jt.update(sqlChild, new PreparedStatementSetter() {
+			@Override
+			public void setValues(PreparedStatement pstmt) throws SQLException {
+				pstmt.setLong(1, orderid);
+			}
+		});
+
+		// 删除订单
+		String sqlParent = "delete from hwua_order where ho_id = ?";
+		jt.update(sqlParent, new PreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement pstmt) throws SQLException {
+				pstmt.setLong(1, orderid);
+			}
+		});
 	}
 }

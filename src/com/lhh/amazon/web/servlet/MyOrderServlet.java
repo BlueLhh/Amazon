@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +16,8 @@ import com.lhh.amazon.entity.User;
 import com.lhh.amazon.service.IOrderService;
 import com.lhh.amazon.service.impl.OrderServiceImpl;
 
-@WebServlet("/MyOrderServlet")
+// 用过滤器比较好
+//@WebServlet("/MyOrderServlet")
 public class MyOrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

@@ -24,6 +24,10 @@
 	src="${pageContext.request.contextPath}/scripts/index.js"></script>
 <script type="text/javascript" src="scripts/shopping.js"></script>
 <style type="text/css">
+#qname {
+	height: 36px;
+}
+
 #oderview {
 	font-size: 14px
 }
@@ -52,8 +56,7 @@
 						</tr>
 						<c:forEach items="${order.list }" var="od" varStatus="stat">
 							<tr id="product_id_1">
-								<td class="thumb"><img
-									style="width: 100px; height: 100px;"
+								<td class="thumb"><img style="width: 100px; height: 100px;"
 									src="${od.product.fileName}" /><a
 									href="pview?id=${od.product.productID}">${od.product.productName}</a></td>
 								<td class="price">￥<span>单价：${(od.cost)/(od.quantity)}</span>
@@ -70,10 +73,10 @@
 										</c:choose></td>
 									<td rowspan="${fn:length(order.list)}" class="delete"><c:choose>
 											<c:when test="${order.type == 0 }">
-												<a href="#"><b>确认收货</b></a>
+												<a href="orderOperation?op=rec&orderid=${order.orderID}"><b>确认收货</b></a>
 											</c:when>
 											<c:otherwise>
-												<a href="#"><b>删除订单</b></a>
+												<a href="orderOperation?op=del&orderid=${order.orderID}"><b>删除订单</b></a>
 											</c:otherwise>
 										</c:choose></td>
 								</c:if>

@@ -67,4 +67,33 @@ public class OrderServiceImpl implements IOrderService {
 		}
 		return list;
 	}
+
+	// 通过订单ID进行订单状态的修改
+	@Override
+	public void updateOrder(Long orderid) throws ServiceException {
+		Connection conn;
+		conn = ConnectionFactory.getConnection();
+		try {
+			dao.update(orderid, conn);
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			throw new ServiceException("更新失败！");
+		} finally {
+			DBUtils.close(null, null, conn);
+		}
+	}
+
+	@Override
+	public void delOrder(Long orderid) throws ServiceException {
+		Connection conn = null;
+		conn = ConnectionFactory.getConnection();
+		try {
+			dao.delete(orderid, conn);
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			throw new ServiceException("删除失败！");
+		} finally {
+			DBUtils.close(null, null, conn);
+		}
+	}
 }

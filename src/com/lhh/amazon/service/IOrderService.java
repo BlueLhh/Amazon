@@ -11,8 +11,14 @@ public interface IOrderService {
 
 	// 查询订单
 	public Order findOrder(Long id) throws ServiceException;
-	
+
 	// 查询订单 根据用户订单来查询
 	public List<Order> userAllOrder(Long userid) throws ServiceException;
+
+	// 更新订单状态
+	public void updateOrder(Long orderid) throws ServiceException;
+
+	// 删除订单
+	public void delOrder(Long orderid) throws ServiceException;
 
 }

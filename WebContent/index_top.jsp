@@ -37,7 +37,7 @@
 				</c:choose>
 				<c:choose>
 					<c:when test="${sessionScope.user.username!=null}">
-						<li><img src="images/icon_order.png"><a href="MyOrderServlet">我的订单</a></li>
+						<li><img src="images/icon_order.png"><a href="my_order.jsp">我的订单</a></li>
 						<li><img src="images/icon_4.png"><a
 							href="javascript:AddFavorite('我的网站',location.href)">收藏</a></li>
 						<li><img src="images/icon_2.png"><a
