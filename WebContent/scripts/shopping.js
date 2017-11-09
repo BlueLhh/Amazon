@@ -23,7 +23,7 @@ function alterCount(cid) {
 	$.ajax({
 		url : "alterQuantity",// 请求的servlet地址
 		type : "GET",// 请求方式
-		data : "" + cid + "_" + $("#" + cid).val(),// 发送到服务器的数据
+		data : "cid=" + cid + "&count=" + $("#" + cid).val(),// 发送到服务器的数据
 		dataType : "text",// 设置返回数据类型
 		success : function(total) {
 			$("#cartCount").html(total);
@@ -33,6 +33,7 @@ function alterCount(cid) {
 		},// 响应完成后执行的回调方法
 		error : function(XMLHttpRequest, statusText) {
 			alert("操作失败!")
+			alert("+++" + cid)
 		}// 响应失败后执行的回调方法
 	})
 }

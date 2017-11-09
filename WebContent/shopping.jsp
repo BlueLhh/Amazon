@@ -21,6 +21,11 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/scripts/index.js"></script>
 <script type="text/javascript" src="scripts/shopping.js"></script>
+<style type="text/css">
+#qname {
+	height: 36px;
+}
+</style>
 </head>
 <body>
 	<%@ include file="index_top.jsp"%>
@@ -33,8 +38,7 @@
 			<form action="doBuy" method="post">
 				<table>
 					<tr>
-						<th><input type="checkbox" name="qx"
-							id="ischeck" />全选</th>
+						<th><input type="checkbox" name="qx" id="ischeck" />全选</th>
 						<th>商品名称</th>
 						<th>商品价格</th>
 						<th>购买数量</th>
@@ -52,20 +56,22 @@
 								src="${product.fileName}" /><a
 								href="pview?id=${product.productID}">${product.productName}</a></td>
 							<td class="price" id="price_id_1">￥${product.price}<span
-								id="span_1"></span> <input type="hidden" id="subPrice" value=""
-								name="sumPrice" /> <input type="hidden" value="" name="pId" />
-								<input type="hidden" value="${product.stock}" name="hpStock"
-								id="hpStock${shopping.cartID }" />
+								id="span_1"></span> <input type="hidden" id="subPrice"
+								value="${product.price }" name="sumPrice" /> <input
+								type="hidden" value="${product.productID}" name="pId" /> <input
+								type="hidden" value="${product.stock}" name="hpStock"
+								id="hpStock${shopping.cartID}" />
 
 							</td>
-							<td class="number"><c:set var="hcid" value=""></c:set> <input
-								type="button" id="minus" value=" - " width="3px"
-								onclick=" reduce()" name="minusButton"> <input
-								id="${hcid }" type="text" name="number"
-								value="${shopping.quantity}" maxlength="5" size="1"
-								style="text-align: center; vertical-align: middle"
-								onblur="checkStock()" /> <input type="button" id="add"
-								value=" + " width="2px" onclick=" increase()" name="addButton"></td>
+							<td class="number"><c:set var="hcid"
+									value="${shopping.cartID }"></c:set> <input type="button"
+								id="minus" value=" - " width="3px" onclick=" reduce(${hcid})"
+								name="minusButton"> <input id="${hcid }" type="text"
+								name="number" value="${shopping.quantity}" maxlength="5"
+								size="1" style="text-align: center; vertical-align: middle"
+								onblur="checkStock(${hcid})" /> <input type="button" id="add"
+								value=" + " width="2px" onclick=" increase(${hcid})"
+								name="addButton"></td>
 							<td class="delete"><a
 								href="deleteCart?cid=${shopping.cartID}">删除</a></td>
 						</tr>
