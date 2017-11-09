@@ -1,8 +1,5 @@
 package com.lhh.amazon.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 
  * 订单子项实体类
