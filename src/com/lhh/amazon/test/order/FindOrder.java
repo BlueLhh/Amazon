@@ -18,7 +18,7 @@ public class FindOrder {
 		Order order;
 		try {
 			order = ios.findOrder(id);
-			System.out.println(order.getList().get(2).getpList().get(0).getFileName());
+			System.out.println(order.getList().get(0).getProduct().getFileName());
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}

@@ -15,4 +15,7 @@ public interface IOrderDao {
 
 	// 查询全部的订单
 	public List<Order> select(Connection conn) throws DataAccessException;
+	
+	// 根据用户的ID来查找该用户的订单
+	public List<Order> query(Long userid,Connection conn) throws DataAccessException;
 }

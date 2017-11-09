@@ -11,7 +11,7 @@ import java.util.List;
  * @author 46512
  *
  */
-public class Order {
+public class Order implements Comparable<Order> {
 	private Long orderID;// 订单ID
 	private User user = new User();// 用户ID 外键
 	private String username;// 用户名
@@ -117,5 +117,19 @@ public class Order {
 		return "Order [orderID=" + orderID + ", user=" + user.getUserID() + ", username=" + username + ", userAddress="
 				+ userAddress + ", createTime=" + createTime + ", cost=" + cost + ", status=" + status + ", type="
 				+ type + ", list=" + list + "]";
+	}
+
+	@Override
+	public int compareTo(Order o) {
+
+		if (o == null) {
+			return -1;
+		} else {
+			if ( this.getOrderID() < o.getOrderID()) {
+				return 1;
+			} else {
+				return -1;
+			}
+		}
 	}
 }

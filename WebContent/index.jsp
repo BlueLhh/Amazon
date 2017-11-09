@@ -31,14 +31,17 @@
 			<div class="pre_look">
 				<h3>最近浏览</h3>
 				<dl>
-					<c:forEach items="" var="p" end="3">
-						<dt>
-							<img style="width: 54px; height: 54px;" src="" />
-						</dt>
-						<dd>
-							<a href="pview"></a>
-						</dd>
-					</c:forEach>
+					<c:if test="${sessionScope.user.username!=null}">
+						<c:forEach items="${sessionScope.Repro}" var="p" end="3">
+							<dt>
+								<a href="pview?id=${p.productID }"> <img
+									style="width: 54px; height: 54px;" src="${p.fileName }" /></a>
+							</dt>
+							<dd>
+								<a href="pview?id=${p.productID }">${p.productName }</a>
+							</dd>
+						</c:forEach>
+					</c:if>
 				</dl>
 			</div>
 		</div>
@@ -70,7 +73,8 @@
 					<li>
 						<dl>
 							<dt>
-								<a href="pview?id=${p.productID}" target="_self"><img src="${p.fileName}" /></a>
+								<a href="pview?id=${p.productID}" target="_self"><img
+									src="${p.fileName}" /></a>
 							</dt>
 							<dd class="title">
 								<a href="pview?id=${p.productID}" target="_self">${p.productName}</a>
@@ -89,17 +93,18 @@
 				<ul>
 					<ul>
 						<li><a href="javascript:lastPage()" id="lastPage">上一页</a></li>
-						<c:forEach begin="1" end="${sessionScope.page }" varStatus="varStatus"  var="pl">
+						<c:forEach begin="1" end="${sessionScope.page }"
+							varStatus="varStatus" var="pl">
 							<li><a href="ref?page=${varStatus.index }">${varStatus.index }</a></li>
 						</c:forEach>
 						<li><a href="javascript:nextPage()" id="nextPage">下一页</a></li>
 					</ul>
 				</ul>
-				<input type="hidden" id="source" value="" />
-				<input type="hidden" id="hpcId" value="" /> 
-				<input type="hidden" id="totalPage" value="${sessionScope.page }" /> 
-				<input type="hidden" id="currentPage" value="${requestScope.pageNow }" /> 
-				<input type="hidden" id="queryName" value="" />
+				<input type="hidden" id="source" value="" /> <input type="hidden"
+					id="hpcId" value="" /> <input type="hidden" id="totalPage"
+					value="${sessionScope.page }" /> <input type="hidden"
+					id="currentPage" value="${requestScope.pageNow }" /> <input
+					type="hidden" id="queryName" value="" />
 			</div>
 		</div>
 

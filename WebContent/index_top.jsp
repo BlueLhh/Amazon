@@ -14,7 +14,7 @@
 					<c:when test="${sessionScope.user.username!=null}">
 						<li><a href="#" class="c_red">${sessionScope.user.username}</a>&nbsp;&nbsp;&nbsp;</li>
 						<li><a href="user/UserServlet?op=logout">退出</a>&nbsp;&nbsp;&nbsp;</li>
-						<li><a href="register.jsp">请注册</a></li>
+						<!-- <li><a href="register.jsp">请注册</a></li> -->
 					</c:when>
 
 					<c:otherwise>
@@ -35,10 +35,23 @@
 							href="javascript:tips()" class="c_red">购物车</a></li>
 					</c:otherwise>
 				</c:choose>
-				<li><img src="images/icon_4.png"><a
-					href="javascript:AddFavorite('我的网站',location.href)">收藏</a></li>
-				<li><img src="images/icon_2.png"><a href="guestbook.jsp">留言</a></li>
-				<li><img src="images/icon_1.png"><a href="index.jsp">首页</a></li>
+				<c:choose>
+					<c:when test="${sessionScope.user.username!=null}">
+						<li><img src="images/icon_order.png"><a href="MyOrderServlet">我的订单</a></li>
+						<li><img src="images/icon_4.png"><a
+							href="javascript:AddFavorite('我的网站',location.href)">收藏</a></li>
+						<li><img src="images/icon_2.png"><a
+							href="guestbook.jsp">留言</a></li>
+						<li><img src="images/icon_1.png"><a href="index.jsp">首页</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><img src="images/icon_4.png"><a
+							href="javascript:AddFavorite('我的网站',location.href)">收藏</a></li>
+						<li><img src="images/icon_2.png"><a
+							href="guestbook.jsp">留言</a></li>
+						<li><img src="images/icon_1.png"><a href="index.jsp">首页</a></li>
+					</c:otherwise>
+				</c:choose>
 			</ul>
 		</div>
 	</div>

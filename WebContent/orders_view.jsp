@@ -44,20 +44,19 @@
 						<th>订单时间:${order.createTime}</th>
 						<th>订单号:${order.orderID}</th>
 						<th>订单总额:${order.cost}</th>
-						<th>
-						<th>
+						<th>订单状态</th>
 					</tr>
 					<!-- 根据用户购物车生成列表 -->
 					<c:forEach items="${order.list}" var="orderDetail">
-					<c:set value="${orderDetail.pList.get(0)}" var="product"></c:set>
+						<c:set value="${orderDetail.product}" var="product"></c:set>
 						<tr id="product_id_1">
 							<td class="thumb"><img style="width: 100px; height: 100px;"
-								src="${product.fileName}" /><a href="pview?id=${product.productID}">${product.productName}</a></td>
+								src="${product.fileName}" /><a
+								href="pview?id=${product.productID}">${product.productName}</a></td>
 							<td class="price">￥<span>单价：${(orderDetail.cost)/(orderDetail.quantity)}</span>
 							</td>
 							<td class="number"><span>X${orderDetail.quantity}</span></td>
 							<td class="delete">正在发货</td>
-
 						</tr>
 					</c:forEach>
 				</table>

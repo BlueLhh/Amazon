@@ -17,17 +17,15 @@ public class OrderDetail {
 	private int quantity;// 数量
 	private double cost;// 总价
 
-	private List<Product> pList = new ArrayList<Product>();
+	// private List<Product> pList = new ArrayList<Product>();
 
-	public OrderDetail(Long orderDetailID, Order order, Product product, int quantity, double cost,
-			List<Product> pList) {
+	public OrderDetail(Long orderDetailID, Order order, Product product, int quantity, double cost) {
 		super();
 		this.orderDetailID = orderDetailID;
 		this.order = order;
 		this.product = product;
 		this.quantity = quantity;
 		this.cost = cost;
-		this.pList = pList;
 	}
 
 	public OrderDetail() {
@@ -74,18 +72,10 @@ public class OrderDetail {
 		this.cost = cost;
 	}
 
-	public List<Product> getpList() {
-		return pList;
-	}
-
-	public void setpList(List<Product> pList) {
-		this.pList = pList;
-	}
-
 	@Override
 	public String toString() {
-		return "OrderDetail [orderDetailID=" + orderDetailID + ", order=" + order.getOrderID() + ", product=" + product.getProductID()
-				+ ", quantity=" + quantity + ", cost=" + cost + ", pList=" + pList + "]";
+		return "OrderDetail [orderDetailID=" + orderDetailID + ", order=" + order.getOrderID() + ", product="
+				+ product.getProductID() + ", quantity=" + quantity + ", cost=" + cost + "]";
 	}
 
 }

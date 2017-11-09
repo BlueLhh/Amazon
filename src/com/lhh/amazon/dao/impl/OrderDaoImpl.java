@@ -114,7 +114,7 @@ public class OrderDaoImpl implements IOrderDao {
 													product.getCategoryID().setCategoryID(rs.getLong(6));
 													product.getChildID().setChildID(rs.getLong(7));
 													product.setFileName(rs.getString(8));
-													od.getpList().add(product);
+													od.setProduct(product);
 												}
 											}
 										});
@@ -156,6 +156,89 @@ public class OrderDaoImpl implements IOrderDao {
 					order.setCost(rs.getDouble(6));
 					order.setStatus(rs.getInt(7));
 					order.setType(rs.getInt(8));
+					list.add(order);
+				}
+			}
+		});
+		return list;
+	}
+
+	// 通过用户ID来程序全部的订单
+	@Override
+	public List<Order> query(Long userid, Connection conn) throws DataAccessException {
+
+		JdbcTemplate jt = new JdbcTemplate(conn);
+		List<Order> list = new ArrayList<Order>();
+		String sql = "select * from hwua_order where ho_user_id = ?";
+		jt.query(sql, new PreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement pstmt) throws SQLException {
+				pstmt.setLong(1, userid);
+			}
+		}, new RowCallBackHandler() {
+
+			@Override
+			public void processRow(ResultSet rs) throws SQLException {
+				while (rs.next()) {
+					Order order = new Order();
+					order.setOrderID(rs.getLong(1));
+					order.getUser().setUserID(rs.getLong(2));
+					order.setUsername(rs.getString(3));
+					order.setUserAddress(rs.getString(4));
+					order.setCreateTime(rs.getDate(5));
+					order.setCost(rs.getDouble(6));
+					order.setStatus(rs.getInt(7));
+					order.setType(rs.getInt(8));
+					// 根据订单ID来查询子订单的信息
+					Long oid;
+					oid = order.getOrderID();
+					String childSQL = "select * from hwua_order_detail where ho_id = " + oid;
+					try {
+						jt.query(childSQL, new RowCallBackHandler() {
+
+							@Override
+							public void processRow(ResultSet rs) throws SQLException {
+								while (rs.next()) {
+									OrderDetail od = new OrderDetail();
+									od.setOrderDetailID(rs.getLong(1));
+									od.getOrder().setOrderID(rs.getLong(2));
+									od.getProduct().setProductID(rs.getLong(3));
+									od.setQuantity(rs.getInt(4));
+									od.setCost(rs.getDouble(5));
+									// 查找商品
+										Long pid;
+									pid = od.getProduct().getProductID();
+									String pidSQL = "select * from hwua_product where hp_id = " + pid;
+									try {
+										jt.query(pidSQL, new RowCallBackHandler() {
+
+											@Override
+											public void processRow(ResultSet rs) throws SQLException {
+												while (rs.next()) {
+													Product product = new Product();
+													product.setProductID(rs.getLong(1));
+													product.setProductName(rs.getNString(2));
+													product.setDescription(rs.getNString(3));
+													product.setPrice(rs.getDouble(4));
+													product.setStock(rs.getInt(5));
+													product.getCategoryID().setCategoryID(rs.getLong(6));
+													product.getChildID().setChildID(rs.getLong(7));
+													product.setFileName(rs.getString(8));
+													od.setProduct(product);
+												}
+											}
+										});
+									} catch (DataAccessException e) {
+										e.printStackTrace();
+									}
+									order.getList().add(od);
+								}
+							}
+						});
+					} catch (DataAccessException e) {
+						e.printStackTrace();
+					}
 					list.add(order);
 				}
 			}

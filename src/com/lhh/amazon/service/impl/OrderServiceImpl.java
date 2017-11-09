@@ -1,6 +1,8 @@
 package com.lhh.amazon.service.impl;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.lhh.amazon.common.ConnectionFactory;
 import com.lhh.amazon.common.DBUtils;
@@ -48,5 +50,21 @@ public class OrderServiceImpl implements IOrderService {
 			DBUtils.close(null, null, conn);
 		}
 		return order;
+	}
+
+	@Override
+	public List<Order> userAllOrder(Long userid) throws ServiceException {
+
+		Connection conn;
+		List<Order> list = new ArrayList<Order>();
+		conn = ConnectionFactory.getConnection();
+		try {
+			list = dao.query(userid, conn);
+		} catch (DataAccessException e) {
+			throw new ServiceException("查找失败！");
+		} finally {
+			DBUtils.close(null, null, conn);
+		}
+		return list;
 	}
 }
