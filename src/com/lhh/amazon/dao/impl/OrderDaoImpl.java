@@ -283,4 +283,19 @@ public class OrderDaoImpl implements IOrderDao {
 			}
 		});
 	}
+
+	// 模拟删除
+	@Override
+	public void updateDel(Long orderid, Connection conn) throws DataAccessException {
+		JdbcTemplate jt = new JdbcTemplate(conn);
+		// SQL 语句 更改状态
+		String sql = "update hwua_order set ho_status = -1,ho_type = -1 where ho_id = ?";
+		jt.update(sql, new PreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement pstmt) throws SQLException {
+				pstmt.setLong(1, orderid);
+			}
+		});
+	}
 }
