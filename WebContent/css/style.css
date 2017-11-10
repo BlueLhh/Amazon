@@ -145,6 +145,8 @@ ul.product li dl dd.price { color:#c30; font-weight:bold; }
 #product .infos .buy .button { border:1px solid #ffefd2; padding:10px; background:#fff8e7; margin:20px auto; text-align:center; }
 #product .infos .buy .button input { border:0; margin:0 10px; background:url(../images/bg.png) left -176px; height:35px; width:144px; cursor:pointer; }
 #product .introduce .text { padding:20px; font-size:14px; line-height:25px; }
+#product .infos .collect { float:right; text-align:center;margin-right: 80px; margin-top: 60px;}
+#product .infos .collect a { font-family: "黑体"; font-size: 38px;}
 
 #shopping { }
 #shopping table { width:100%; line-height:24px; border-top:2px solid #dfc9b2; border-bottom:2px solid #dfc9b2; }
