@@ -96,4 +96,18 @@ public class OrderServiceImpl implements IOrderService {
 			DBUtils.close(null, null, conn);
 		}
 	}
+
+	@Override
+	public void updateDel(Long orderid) throws ServiceException {
+		Connection conn;
+		conn = ConnectionFactory.getConnection();
+		try {
+			dao.updateDel(orderid, conn);
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			throw new ServiceException("删除失败！");
+		} finally {
+			DBUtils.close(null, null, conn);
+		}
+	}
 }
