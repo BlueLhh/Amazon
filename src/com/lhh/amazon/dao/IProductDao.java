@@ -22,4 +22,8 @@ public interface IProductDao {
 
 	// 修改信息 通过ID来修改库存
 	public void update(Long id, int stcok, Connection conn) throws DataAccessException;
+
+	// 修改信息 通过ID来修改商品的状态 判断是否被收藏
+	public void update(Long id, byte status, Connection conn) throws DataAccessException;
+	
 }
