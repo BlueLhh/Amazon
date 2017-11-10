@@ -37,7 +37,7 @@ public class OrderOperationServlet extends HttpServlet {
 		} else {
 			// 删除订单
 			try {
-				ios.delOrder(orderid);
+				ios.updateDel(orderid);
 			} catch (ServiceException e) {
 				e.printStackTrace();
 			}
