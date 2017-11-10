@@ -125,4 +125,17 @@ public class ProductServicempl implements IProductService {
 			DBUtils.close(null, null, conn);
 		}
 	}
+
+	@Override
+	public void updateStatus(Long id, byte status) throws ServiceException {
+		Connection conn;
+		conn = ConnectionFactory.getConnection();
+		try {
+			dao.update(id, status, conn);
+		} catch (DataAccessException e) {
+			throw new ServiceException("更新失败！");
+		} finally {
+			DBUtils.close(null, null, conn);
+		}
+	}
 }
