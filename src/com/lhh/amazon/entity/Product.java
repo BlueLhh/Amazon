@@ -19,11 +19,12 @@ public class Product {
 	private ProductCategory categoryID = new ProductCategory();// 产品分类ID
 	private ProductCategory childID = new ProductCategory();// 子项ID
 	private String fileName;// 文件名字
+	private byte status;// 状态 判断是否收藏
 
 	private List<OrderDetail> list = new ArrayList<OrderDetail>();
 
 	public Product(Long productID, String productName, String description, double price, int stock,
-			ProductCategory categoryID, ProductCategory childID, String fileName, List<OrderDetail> list) {
+			ProductCategory categoryID, ProductCategory childID, String fileName, byte status, List<OrderDetail> list) {
 		super();
 		this.productID = productID;
 		this.productName = productName;
@@ -33,6 +34,7 @@ public class Product {
 		this.categoryID = categoryID;
 		this.childID = childID;
 		this.fileName = fileName;
+		this.status = status;
 		this.list = list;
 	}
 
@@ -104,6 +106,14 @@ public class Product {
 		this.fileName = fileName;
 	}
 
+	public byte getStatus() {
+		return status;
+	}
+
+	public void setStatus(byte status) {
+		this.status = status;
+	}
+
 	public List<OrderDetail> getList() {
 		return list;
 	}
@@ -116,7 +126,7 @@ public class Product {
 	public String toString() {
 		return "Product [productID=" + productID + ", productName=" + productName + ", description=" + description
 				+ ", price=" + price + ", stock=" + stock + ", categoryID=" + categoryID.getCategoryID() + ", childID="
-				+ childID.getChildID() + ", fileName=" + fileName + ", list=" + list + "]";
+				+ childID.getChildID() + ", fileName=" + fileName + ",status" + status + ", list=" + list + "]";
 	}
 
 }
