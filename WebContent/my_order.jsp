@@ -54,34 +54,37 @@
 							<th>订单状态</th>
 							<th>操作</th>
 						</tr>
-						<c:forEach items="${order.list }" var="od" varStatus="stat">
-							<tr id="product_id_1">
-								<td class="thumb"><img style="width: 100px; height: 100px;"
-									src="${od.product.fileName}" /><a
-									href="pview?id=${od.product.productID}">${od.product.productName}</a></td>
-								<td class="price">￥<span>单价：${(od.cost)/(od.quantity)}</span>
-								</td>
-								<td class="number"><span>X${od.quantity}</span></td>
-								<c:if test="${ stat.index == 0}">
-									<td rowspan="${fn:length(order.list)}" class="delete"><c:choose>
-											<c:when test="${order.status == 0 }">
+						<c:if test="${order.type != -1 }">
+							<c:forEach items="${order.list }" var="od" varStatus="stat">
+								<tr id="product_id_1">
+									<td class="thumb"><img
+										style="width: 100px; height: 100px;"
+										src="${od.product.fileName}" /><a
+										href="pview?id=${od.product.productID}">${od.product.productName}</a></td>
+									<td class="price">￥<span>单价：${(od.cost)/(od.quantity)}</span>
+									</td>
+									<td class="number"><span>X${od.quantity}</span></td>
+									<c:if test="${stat.index == 0}">
+										<td rowspan="${fn:length(order.list)}" class="delete"><c:choose>
+												<c:when test="${order.status == 0 }">
 												宝贝在路上
 											</c:when>
-											<c:otherwise>
+												<c:when test="${order.status == 1 }">
 												已收货
-											</c:otherwise>
-										</c:choose></td>
-									<td rowspan="${fn:length(order.list)}" class="delete"><c:choose>
-											<c:when test="${order.type == 0 }">
-												<a href="orderOperation?op=rec&orderid=${order.orderID}"><b>确认收货</b></a>
 											</c:when>
-											<c:otherwise>
-												<a href="orderOperation?op=del&orderid=${order.orderID}"><b>删除订单</b></a>
-											</c:otherwise>
-										</c:choose></td>
-								</c:if>
-							</tr>
-						</c:forEach>
+											</c:choose></td>
+										<td rowspan="${fn:length(order.list)}" class="delete"><c:choose>
+												<c:when test="${order.type == 0 }">
+													<a href="orderOperation?op=rec&orderid=${order.orderID}"><b>确认收货</b></a>
+												</c:when>
+												<c:when test="${order.type == 1 }">
+													<a href="orderOperation?op=del&orderid=${order.orderID}"><b>删除订单</b></a>
+												</c:when>
+											</c:choose></td>
+									</c:if>
+								</tr>
+							</c:forEach>
+						</c:if>
 					</c:forEach>
 				</table>
 
