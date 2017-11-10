@@ -40,6 +40,7 @@ public class ProductDaoImpl implements IProductDao {
 					product.getCategoryID().setCategoryID(rs.getLong(6));
 					product.getChildID().setChildID(rs.getLong(7));
 					product.setFileName(rs.getString(8));
+					product.setStatus(rs.getByte(9));
 					list.add(product);
 				}
 			}
@@ -76,6 +77,7 @@ public class ProductDaoImpl implements IProductDao {
 					product.getCategoryID().setCategoryID(rs.getLong(6));
 					product.getChildID().setChildID(rs.getLong(7));
 					product.setFileName(rs.getString(8));
+					product.setStatus(rs.getByte(9));
 					// // 根据商品ID来查询子订单的信息
 					// String childSQL = "select * from hwua_order_detail where
 					// hp_id = ?";
@@ -129,6 +131,7 @@ public class ProductDaoImpl implements IProductDao {
 					product.getCategoryID().setCategoryID(rs.getLong(6));
 					product.getChildID().setChildID(rs.getLong(7));
 					product.setFileName(rs.getString(8));
+					product.setStatus(rs.getByte(9));
 					list.add(product);
 				}
 			}
@@ -179,6 +182,7 @@ public class ProductDaoImpl implements IProductDao {
 					product.getCategoryID().setCategoryID(rs.getLong(6));
 					product.getChildID().setChildID(rs.getLong(7));
 					product.setFileName(rs.getString(8));
+					product.setStatus(rs.getByte(9));
 					list.add(product);
 				}
 			}
@@ -197,6 +201,22 @@ public class ProductDaoImpl implements IProductDao {
 			@Override
 			public void setValues(PreparedStatement pstmt) throws SQLException {
 				pstmt.setLong(1, stcok);
+				pstmt.setLong(2, id);
+			}
+		});
+	}
+
+	// 更新状态
+	@Override
+	public void update(Long id, byte status, Connection conn) throws DataAccessException {
+		JdbcTemplate jt = new JdbcTemplate(conn);
+		// 更新的SQL语句
+		String sql = "update hwua_product set hp_status = ? where hp_id = ?";
+		jt.update(sql, new PreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement pstmt) throws SQLException {
+				pstmt.setByte(1, status);
 				pstmt.setLong(2, id);
 			}
 		});
