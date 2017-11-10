@@ -23,4 +23,7 @@ public interface IProductService {
 
 	// 更新库存
 	public void updateStock(Long id, int stock) throws ServiceException;
+
+	// 更新状态
+	public void updateStatus(Long id, byte status) throws ServiceException;
 }
