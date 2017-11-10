@@ -21,4 +21,7 @@ public interface IOrderService {
 	// 删除订单
 	public void delOrder(Long orderid) throws ServiceException;
 
+	// 模拟删除
+	public void updateDel(Long orderid) throws ServiceException;
+
 }
