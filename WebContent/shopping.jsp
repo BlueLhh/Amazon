@@ -49,7 +49,7 @@
 					<c:forEach items="${requestScope.cart}" var="shopping">
 						<tr id="product_id_1">
 							<!-- 根据购物车的ID来做复选框的ID -->
-							<td><input type="checkbox" name='cb' id="cb"
+							<td><input type="checkbox" name='cb' id="cb" value="${shopping.cartID}"
 								onclick="setSelectAll()" style="margin-left: 55px;" /></td>
 							<c:set var="product" value="${shopping.product}"></c:set>
 							<td class="thumb"><img style="width: 100px; height: 100px;"

@@ -28,4 +28,7 @@ public interface ICartService {
 	public boolean checkCart(Long pid, Long userid) throws ServiceException;
 
 	public Cart findCart(Long pid, Long userid) throws ServiceException;
+
+	// 通过购物车ID来查询购物车
+	public Cart findOne(Long id) throws ServiceException;
 }

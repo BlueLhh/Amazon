@@ -167,4 +167,32 @@ public class CartDaoImpl implements ICartDao {
 		});
 		return cart;
 	}
+
+	@Override
+	public Cart selectOne(Long id, Connection conn) throws DataAccessException {
+
+		JdbcTemplate jt = new JdbcTemplate(conn);
+		Cart cart = new Cart();
+		String sql = "select * from hwua_cart where id = ?";
+
+		jt.query(sql, new PreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement pstmt) throws SQLException {
+				pstmt.setLong(1, id);
+			}
+		}, new RowCallBackHandler() {
+
+			@Override
+			public void processRow(ResultSet rs) throws SQLException {
+				if (rs.next()) {
+					cart.setCartID(rs.getLong(1));
+					cart.getProduct().setProductID(rs.getLong(2));
+					cart.setQuantity(rs.getInt(3));
+					cart.setUserID(rs.getLong(4));
+				}
+			}
+		});
+		return cart;
+	}
 }

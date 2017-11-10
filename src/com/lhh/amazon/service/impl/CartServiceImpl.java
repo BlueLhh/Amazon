@@ -133,7 +133,7 @@ public class CartServiceImpl implements ICartService {
 
 	@Override
 	public Cart findCart(Long pid, Long userid) throws ServiceException {
-		
+
 		Connection conn;
 		conn = ConnectionFactory.getConnection();
 		Cart cart;
@@ -141,6 +141,23 @@ public class CartServiceImpl implements ICartService {
 			cart = dao.select(pid, userid, conn);
 		} catch (DataAccessException e) {
 			throw new ServiceException("查找失败！");
+		} finally {
+			DBUtils.close(null, null, conn);
+		}
+		return cart;
+	}
+
+	@Override
+	public Cart findOne(Long id) throws ServiceException {
+
+		Connection conn;
+		conn = ConnectionFactory.getConnection();
+		Cart cart = null;
+		try {
+			cart = dao.selectOne(id, conn);
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			throw new ServiceException("查询失败！");
 		} finally {
 			DBUtils.close(null, null, conn);
 		}

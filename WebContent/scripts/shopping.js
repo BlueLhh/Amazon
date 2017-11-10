@@ -33,7 +33,6 @@ function alterCount(cid) {
 		},// 响应完成后执行的回调方法
 		error : function(XMLHttpRequest, statusText) {
 			alert("操作失败!")
-			alert("+++" + cid)
 		}// 响应失败后执行的回调方法
 	})
 }
@@ -103,4 +102,5 @@ function setSelectAll() {
 	if (checkedsub == chsub) {
 		$("#ischeck").prop("checked", true);
 	}
+	
 }
