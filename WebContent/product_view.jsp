@@ -5,13 +5,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>亚马逊 - 产品显示</title>
-<link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/css/adv.css" rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css" />
-<script src="${pageContext.request.contextPath}/scripts/jquery-2.1.0.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/scripts/adv.js" type="text/javascript"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/function.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/index.js"></script>
+<link href="${pageContext.request.contextPath}/css/index.css"
+	rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/css/adv.css"
+	rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/css/style.css"
+	rel="stylesheet" type="text/css" />
+<script src="${pageContext.request.contextPath}/scripts/jquery-2.1.0.js"
+	type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/scripts/adv.js"
+	type="text/javascript"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/scripts/function.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/scripts/index.js"></script>
 <script type="text/javascript" src="scripts/product_view.js"></script>
 
 
@@ -20,8 +27,7 @@
 	<%@ include file="index_top.jsp"%>
 	<div id="position" class="wrap">
 		<c:set value="" var="s"></c:set>
-		您现在的位置：<a href="index.jsp">亚马逊</a> &gt; <a
-			href="category"></a> &gt; <a
+		您现在的位置：<a href="index.jsp">亚马逊</a> &gt; <a href="category"></a> &gt; <a
 			href="category"></a>
 	</div>
 	<div id="main" class="wrap">
@@ -35,6 +41,8 @@
 				<div class="thumb">
 					<img style="width: 100px; height: 100px;" src="${p.fileName}" />
 				</div>
+
+
 				<div class="buy">
 					<p>
 						商城价：<span class="price">￥${p.price}</span>
@@ -59,8 +67,9 @@
 						<c:when test="${sessionScope.user.username == null }">
 							<div class="button">
 								<input type="button" name="button" value="" onclick="remaind();"
-									style="background: url(images/buyNow.png)" /> <input type="image"
-									name="imageField" src="images/cartbutton.png" onclick="remaind()" />
+									style="background: url(images/buyNow.png)" /> <input
+									type="image" name="imageField" src="images/cartbutton.png"
+									onclick="remaind()" />
 							</div>
 
 						</c:when>
@@ -68,10 +77,23 @@
 							<div class="button">
 								<input type="button" name="button" value=""
 									onclick="goingToBuy(${p.productID });"
-									style="background: url(images/buyNow.png)" /> <input type="image"
-									name="imageField" src="images/cartbutton.png"
+									style="background: url(images/buyNow.png)" /> <input
+									type="image" name="imageField" src="images/cartbutton.png"
 									onclick="addToCart(${p.productID });" />
 							</div>
+						</c:otherwise>
+					</c:choose>
+
+				</div>
+				<div class="collect">
+					<c:choose>
+						<c:when test="${p.status == 0 }">
+							<img src="images/shoucang2.png">
+							<a href="collect?op=ok&id=${p.productID}">收藏</a>
+						</c:when>
+						<c:otherwise>
+							<img src="images/shoucang1.png">
+							<a href="collect?op=no&id=${p.productID}">取消收藏</a>
 						</c:otherwise>
 					</c:choose>
 
