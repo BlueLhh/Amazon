@@ -1,5 +1,8 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.lhh.amazon.entity.Order"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> --%>
+
 
 <!DOCTYPE>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -41,6 +44,10 @@
 					<c:set value="" var="view"></c:set>
 					<c:set value="${sessionScope.order}" var="order"></c:set>
 					<tr>
+						<%-- <%
+							Order order = (Order) request.getSession().getAttribute("order");
+							SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						%> --%>
 						<th>订单时间:${order.createTime}</th>
 						<th>订单号:${order.orderID}</th>
 						<th>订单总额:${order.cost}</th>
