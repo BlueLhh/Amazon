@@ -26,6 +26,12 @@ public interface IUserDao {
 	 */
 	public User select(Connection conn, String username, String password) throws DataAccessException;
 
+	// 用于判断一个用户是否存在
+	public User select(Connection conn, String username, String phone, String email) throws DataAccessException;
+
 	public User select(Connection conn, String username) throws DataAccessException;
-	
+
+	// 修改个人中心的信息
+	public void update(User user, Connection conn) throws DataAccessException;
+
 }

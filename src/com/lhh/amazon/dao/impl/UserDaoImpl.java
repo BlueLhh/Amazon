@@ -122,4 +122,67 @@ public class UserDaoImpl implements IUserDao {
 		});
 		return user;
 	}
+
+	//
+	@Override
+	public User select(Connection conn, String username, String phone, String email) throws DataAccessException {
+		JdbcTemplate jt = new JdbcTemplate(conn);
+		User user = new User();
+		// 查询SQL语句
+		String sql = "select * from hwua_user where hu_user_name = ? and hu_mobile = ? and hu_email = ?";
+		jt.query(sql, new PreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, username);
+				pstmt.setString(2, phone);
+				pstmt.setString(3, email);
+			}
+		}, new RowCallBackHandler() {
+
+			@Override
+			public void processRow(ResultSet rs) throws SQLException {
+				if (rs.next()) {
+					user.setUserID(rs.getLong(1));
+					user.setUsername(rs.getString(2));
+					user.setPassword(rs.getString(3));
+					user.setSex(rs.getByte(4));
+					user.setBirthday(rs.getDate(5));
+					user.setIdentityCode(rs.getString(6));
+					user.setEmail(rs.getString(7));
+					user.setMobile(rs.getString(8));
+					user.setAddress(rs.getString(9));
+					user.setStatus(rs.getInt(10));
+				}
+			}
+		});
+		return user;
+	}
+
+	// 更新信息
+	@Override
+	public void update(User user, Connection conn) throws DataAccessException {
+		JdbcTemplate jt = new JdbcTemplate(conn);
+
+		String sql = "update hwua_user "
+				+ "set HU_USER_NAME = ?,HU_PASSWORD = ?,HU_SEX = ?,HU_BIRTHDAY = ?,HU_IDENTITY_CODE = ?,HU_EMAIL = ?,HU_MOBILE = ?,HU_ADDRESS = ?,HU_STATUS = ? "
+				+ "where HU_USER_ID = ?";
+
+		jt.update(sql, new PreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, user.getUsername());
+				pstmt.setString(2, user.getPassword());
+				pstmt.setByte(3, user.getSex());
+				pstmt.setDate(4, new java.sql.Date(user.getBirthday().getTime()));
+				pstmt.setString(5, user.getIdentityCode());
+				pstmt.setString(6, user.getEmail());
+				pstmt.setString(7, user.getMobile());
+				pstmt.setString(8, user.getAddress());
+				pstmt.setInt(9, user.getStatus());
+				pstmt.setLong(10, user.getUserID());
+			}
+		});
+	}
 }

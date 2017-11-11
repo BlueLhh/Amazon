@@ -12,7 +12,7 @@
 			<ul class="m_left">
 				<c:choose>
 					<c:when test="${sessionScope.user.username!=null}">
-						<li><a href="#" class="c_red">${sessionScope.user.username}</a>&nbsp;&nbsp;&nbsp;</li>
+						<li><a href="my_self.jsp" class="c_red">${sessionScope.user.username}</a>&nbsp;&nbsp;&nbsp;</li>
 						<li><a href="user/UserServlet?op=logout">退出</a>&nbsp;&nbsp;&nbsp;</li>
 						<!-- <li><a href="register.jsp">请注册</a></li> -->
 					</c:when>
@@ -41,7 +41,8 @@
 							href="my_order.jsp">我的订单</a></li>
 						<!-- <li><img src="images/icon_4.png"><a
 							href="javascript:AddFavorite('我的网站',location.href)">收藏</a></li> -->
-						<li><img src="images/icon_4.png"><a href="my_collect.jsp">收藏</a></li>
+						<li><img src="images/icon_4.png"><a
+							href="my_collect.jsp">收藏</a></li>
 						<li><img src="images/icon_2.png"><a
 							href="guestbook.jsp">留言</a></li>
 						<li><img src="images/icon_1.png"><a href="index.jsp">首页</a></li>
@@ -71,10 +72,10 @@
 		<div class="nav_bar_container">
 			<ul>
 				<li><a href="#">商品名称</a></li>
-				<c:if test="">
-					<c:forEach items="" var="p" end="2">
+				<c:if test="${sessionScope.user.username!=null}">
+					<c:forEach items="${sessionScope.Repro}" var="p" end="3">
 						<li>|</li>
-						<li><a href="pview" target="_self"></a></li>
+						<li><a href="pview?id=${p.productID }" target="_self">${p.productName }</a></li>
 					</c:forEach>
 				</c:if>
 

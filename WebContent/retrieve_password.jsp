@@ -37,18 +37,16 @@
 					<table>
 						<tr>
 							<td class="field">用户名：</td>
-							<td><input class="text" type="text" name="userName"
-								onfocus="FocusItem(this)" onblur="CheckItem(this);" /><span></span></td>
+							<td><input class="text" type="text" name="userName" /><span></span></td>
 						</tr>
 						<tr>
-							<td class="field">真实姓名：</td>
-							<td><input class="text" type="text" id="uName" name="uName"
-								onfocus="FocusItem(this)" onblur="CheckItem(this);" /><span></span></td>
+							<td class="field">手机号码：</td>
+							<td><input class="text" type="text" id="uPhone"
+								name="uPhone" /><span></span></td>
 						</tr>
 						<tr>
 							<td class="field">邮箱：</td>
-							<td><input class="text" type="text" id="email" name="email"
-								onfocus="FocusItem(this)" onblur="CheckItem(this);" /><span></span></td>
+							<td><input class="text" type="text" id="email" name="email" /><span></span></td>
 						</tr>
 
 						<tr>

@@ -90,4 +90,40 @@ public class UserServiceImpl implements IUserService {
 		}
 		return user;
 	}
+
+	// 通过三条信息去查询用户是否存在
+	@Override
+	public boolean chcekUser(String username, String phone, String email) throws ServiceException {
+
+		Connection conn;
+		conn = ConnectionFactory.getConnection();
+		User user;
+		try {
+			user = dao.select(conn, username, phone, email);
+		} catch (DataAccessException e) {
+			throw new ServiceException("查找失败！");
+		} finally {
+			DBUtils.close(null, null, conn);
+		}
+		if (user == null || user.getUserID() == -1) {
+			// 不存在
+			return false;
+		} else {
+			// 存在
+			return true;
+		}
+	}
+
+	@Override
+	public void updateUser(User user) throws ServiceException {
+		Connection conn;
+		conn = ConnectionFactory.getConnection();
+		try {
+			dao.update(user, conn);
+		} catch (DataAccessException e) {
+			throw new ServiceException("更新失败！");
+		} finally {
+			DBUtils.close(null, null, conn);
+		}
+	}
 }
