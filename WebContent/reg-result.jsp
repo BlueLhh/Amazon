@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>亚马逊 - 注册结果</title>
+<title>天小猫 - 注册结果</title>
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 <script type="text/javascript" src="scripts/function.js"></script>
 </head>
@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<em class="corner lb"></em>
 		<em class="corner rt"></em>
 		<div class="box">
-			<h1>欢迎注册易买网</h1>
+			<h1>欢迎注册天小猫</h1>
 			<ul class="steps clearfix">
 				<li class="finished"><em></em>填写注册信息</li>
 				<li class="last-current"><em></em>注册成功</li>
@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 </div>
 <div id="footer">
-	Copyright &copy; 2016 上海海文 All Rights Reserved. 京ICP证1000001号
+	Copyright &copy; 2017 天小猫 All Rights Reserved. 桂ICP证1000001号
 </div>
 </body>
 </html>
