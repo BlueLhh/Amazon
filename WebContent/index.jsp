@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>亚马逊-首页</title>
+<title>天小猫-首页</title>
 <link href="${pageContext.request.contextPath}/css/index.css"
 	rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath}/css/adv.css"
@@ -114,7 +114,7 @@
 		</div>
 	</div>
 
-	<div id="foot">Copyright © 2016 上海海文 All Rights Reserved.</div>
+	<div id="foot">Copyright © 2017 天小猫 All Rights Reserved.桂ICP证1000001号</div>
 </body>
 </html>
 
