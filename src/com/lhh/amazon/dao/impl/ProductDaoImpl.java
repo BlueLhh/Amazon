@@ -13,6 +13,7 @@ import com.lhh.amazon.common.PreparedStatementSetter;
 import com.lhh.amazon.common.RowCallBackHandler;
 import com.lhh.amazon.dao.IProductDao;
 import com.lhh.amazon.entity.Product;
+import com.lhh.amazon.entity.ProductCategory;
 
 public class ProductDaoImpl implements IProductDao {
 
@@ -78,28 +79,50 @@ public class ProductDaoImpl implements IProductDao {
 					product.getChildID().setChildID(rs.getLong(7));
 					product.setFileName(rs.getString(8));
 					product.setStatus(rs.getByte(9));
-					// // 根据商品ID来查询子订单的信息
-					// String childSQL = "select * from hwua_order_detail where
-					// hp_id = ?";
-					// try {
-					// jt.query(childSQL, new PreparedStatementSetter() {
-					//
-					// @Override
-					// public void setValues(PreparedStatement pstmt) throws
-					// SQLException {
-					//
-					// }
-					// }, new RowCallBackHandler() {
-					//
-					// @Override
-					// public void processRow(ResultSet rs) throws SQLException
-					// {
-					//
-					// }
-					// });
-					// } catch (DataAccessException e) {
-					// e.printStackTrace();
-					// }
+					// 查询父级分类
+					Long p_id;
+					p_id = product.getCategoryID().getCategoryID();
+					String pSQL = "select * from hwua_product_category where hpc_id = " + p_id + " and hpc_parent_id = "
+							+ p_id;
+					try {
+						jt.query(pSQL, new RowCallBackHandler() {
+
+							@Override
+							public void processRow(ResultSet rs) throws SQLException {
+								while (rs.next()) {
+									ProductCategory pc = new ProductCategory();
+									pc.setCategoryID(rs.getLong(1));
+									pc.setCategoryName(rs.getString(2));
+									pc.setChildID(rs.getLong(3));
+									product.setCategoryID(pc);
+								}
+							}
+						});
+					} catch (DataAccessException e) {
+						e.printStackTrace();
+					}
+					// 查询子级分类
+					Long c_id;
+					c_id = product.getChildID().getChildID();
+					String c_sql = "select * from hwua_product_category where hpc_id <> hpc_parent_id and hpc_id = "
+							+ c_id;
+					try {
+						jt.query(c_sql, new RowCallBackHandler() {
+
+							@Override
+							public void processRow(ResultSet rs) throws SQLException {
+								while (rs.next()) {
+									ProductCategory pc = new ProductCategory();
+									pc.setCategoryID(rs.getLong(1));
+									pc.setCategoryName(rs.getString(2));
+									pc.setChildID(rs.getLong(3));
+									product.setChildID(pc);
+								}
+							}
+						});
+					} catch (DataAccessException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		});
