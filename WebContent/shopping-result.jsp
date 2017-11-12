@@ -9,7 +9,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>亚马逊 - 购物车</title>
+<title>天小猫 - 购物车</title>
 <link href="${pageContext.request.contextPath}/css/index.css"
 	rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath}/css/adv.css"
@@ -28,7 +28,7 @@
 <body>
 	<%@ include file="index_top.jsp"%>
 	<div id="position" class="wrap">
-		您现在的位置：<a href="ProductServlet">亚马逊</a> &gt; 购物车
+		您现在的位置：<a href="ProductServlet">天小猫</a> &gt; 购物车
 	</div>
 	<div class="wrap">
 		<div id="shopping">
@@ -46,7 +46,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="footer">Copyright © 2016 上海海文 All Rights Reserved.</div>
+	<div id="footer">Copyright © 2017 天小猫 All Rights Reserved.桂ICP证1000001号</div>
 </body>
 </html>
 
