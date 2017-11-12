@@ -9,7 +9,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>亚马逊 - 登录</title>
+<title>天小猫 - 登录</title>
 <link href="${pageContext.request.contextPath}/css/index.css"
 	rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath}/css/adv.css"
@@ -31,7 +31,7 @@
 		<div class="shadow">
 			<em class="corner lb"></em> <em class="corner rt"></em>
 			<div class="box">
-				<h1>欢迎回到亚马逊</h1>
+				<h1>欢迎回到天小猫</h1>
 				<form id="loginForm" method="post" action="user/UserServlet"
 					onsubmit="return loginCheck()">
 					<!-- 使用隐藏域，传递一个键值对到后台，判断是注册、登陆登操作 -->
@@ -67,6 +67,6 @@
 		</div>
 		<div class="clear"></div>
 	</div>
-	<div id="footer">Copyright &copy; 2016 上海海文 All Rights Reserved</div>
+	<div id="footer">Copyright &copy; 2017 天小猫 All Rights Reserved.桂ICP证1000001号</div>
 </body>
 </html>
