@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>亚马逊 - 留言</title>
+<title>天小猫 - 留言</title>
 <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath}/css/adv.css" rel="stylesheet" type="text/css" />
@@ -17,7 +17,7 @@
 <body>
 <%@ include file="index_top.jsp"  %>
 <div id="position" class="wrap">
-	您现在的位置：<a href="${pageContext.request.contextPath}/index.jsp">亚马逊</a> &gt; 在线留言
+	您现在的位置：<a href="${pageContext.request.contextPath}/index.jsp">天小猫</a> &gt; 在线留言
 </div>
 <div id="main" class="wrap">
 	<div class="lefter">
@@ -75,7 +75,7 @@
 	<div class="clear"></div>
 </div>
 <div id="footer">
-	Copyright &copy; 2016 上海海文 All Rights Reserved. 京ICP证1000001号
+	Copyright &copy; 2017 北海海文 All Rights Reserved. 桂ICP证1000001号
 </div>
 </body>
 </html>
