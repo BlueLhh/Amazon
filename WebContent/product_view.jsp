@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>亚马逊 - 产品显示</title>
+<title>天小猫 - 产品显示</title>
 <link href="${pageContext.request.contextPath}/css/index.css"
 	rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath}/css/adv.css"
@@ -26,9 +26,10 @@
 <body>
 	<%@ include file="index_top.jsp"%>
 	<div id="position" class="wrap">
-		<c:set value="" var="s"></c:set>
-		您现在的位置：<a href="index.jsp">亚马逊</a> &gt; <a href="category"></a> &gt; <a
-			href="category"></a>
+		<c:set value="${requestScope.product}" var="s"></c:set>
+		您现在的位置：<a href="index.jsp">天小猫</a> &gt; <a
+			href="category?cate=max&hpc_parent_id=${s.categoryID.categoryID}">${s.categoryID.categoryName }</a>
+		&gt; <a href="category?cate=min&hpc_id=${s.childID.childID}">${s.childID.categoryName }</a>&gt;${s.productName}
 	</div>
 	<div id="main" class="wrap">
 		<div class="lefter">
@@ -112,7 +113,7 @@
 		</div>
 		<div class="clear"></div>
 	</div>
-	<div id="footer">Copyright &copy; 2016 上海海文 All Rights Reserved.
+	<div id="footer">Copyright &copy; 2017 天小猫 All Rights Reserved.桂ICP证1000001号
 	</div>
 </body>
 </html>
