@@ -47,14 +47,14 @@
 				<table id="oderview">
 					<c:set value="" var="view"></c:set>
 					<c:forEach items="${sessionScope.list}" var="order">
-						<tr>
-							<th>订单时间:${order.createTime}</th>
-							<th>订单号:${order.orderID}</th>
-							<th>订单总额:${order.cost}</th>
-							<th>订单状态</th>
-							<th>操作</th>
-						</tr>
 						<c:if test="${order.type != -1 }">
+							<tr>
+								<th>订单时间:${order.createTime}</th>
+								<th>订单号:${order.orderID}</th>
+								<th>订单总额:${order.cost}</th>
+								<th>订单状态</th>
+								<th>操作</th>
+							</tr>
 							<c:forEach items="${order.list }" var="od" varStatus="stat">
 								<tr id="product_id_1">
 									<td class="thumb"><img
@@ -87,11 +87,10 @@
 						</c:if>
 					</c:forEach>
 				</table>
-
 			</form>
 		</div>
 	</div>
-	<div id="footer">Copyright &copy; 2017 天小猫 All Rights Reserved.桂ICP证1000001号
-	</div>
+	<div id="footer">Copyright &copy; 2017 天小猫 All Rights
+		Reserved.桂ICP证1000001号</div>
 </body>
 </html>

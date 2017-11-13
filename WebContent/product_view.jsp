@@ -29,7 +29,7 @@
 		<c:set value="${requestScope.product}" var="s"></c:set>
 		您现在的位置：<a href="index.jsp">天小猫</a> &gt; <a
 			href="category?cate=max&hpc_parent_id=${s.categoryID.categoryID}">${s.categoryID.categoryName }</a>
-		&gt; <a href="category?cate=min&hpc_id=${s.childID.childID}">${s.childID.categoryName }</a>&gt;${s.productName}
+		&gt; <a href="category?cate=min&hpc_id=${s.childID.categoryID}">${s.childID.categoryName }</a>&gt;${s.productName}
 	</div>
 	<div id="main" class="wrap">
 		<div class="lefter">
